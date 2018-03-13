@@ -1,7 +1,20 @@
-#purchaseInfo div {
+div {
   display: inline-block;
+  vertical-align: top;
+  margin: 1em;
 }
-
-#revenueExpenses div {
-  display: inline-block;
+h1 {
+  margin: 1em;
+}
+p {
+  font-size: 18px;
+}
+.first,
+.second {
+  display: block;
+}
+.container {
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
 }
