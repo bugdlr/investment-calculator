@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Real Estate Investment Deal Analysis Calculator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <h1>Real Estate Investment Deal Analysis Calculator</h1>
+  <div class="propertyDetails" id="purchaseInfo">
+    <div id="costAssumptions">
+        <h2>Cost Assumptions</h2>
+          <p>Purchase Price: $<input id="price" type="number" min="1" max="10000000000" onchange="sumValue()"</p>
+          <p>Improvements: $<input id="improvements" type="number" min="1" max="1000000" onchange="sumValue()"</p>
+          <p>Closing Costs: $<input id="closingCosts" type="number" min="1" max="1000000" onchange="sumValue()"</p>
+        <h3 id="totalCost">Total Cost = </h3>
+      </div>
+      <div id="financingAssumptions">
+          <h2>Financing Assumptions</h2>
+            <p>Downpayment (%): <input id="downpayment" type="number" min="1" max="100000" </p>
+            <p>Finance Amount: $<input id="FinAmt" type="number" min="1" max="10000000" </p>
+            <p>Downpayment Amount: $<input id="dwnpmtAmt" type="number" min="1" max="100000" onchange="cashOutlay()"</p>
+            <p>Interest Rate (%): <input id="interestRate" type="number" min="0" max="100" </p>
+            <p>Mortgage (Years): <input id="mortgageYrs" type="number" min="1" max="100" </p>
+            <p>Mortgage Payment: $<input id="mortgagePayment" type="number" min="1" max="100000" </p>
+          <h3 id="cashOutlay">Cash Outlay =</h3>
+        </div>
+        <div id="revenueAssumptions">
+            <h2>Revenue Assumptions</h2>
+              <p># of Units: <input id="numOfUnits" type="number" min="1" max="1000" </p>
+              <p>Total Rent/Month: $<input id="totalRentPerMonth" type="number" min="0" max="10000" onchange="gossRev()"</p>
+              <p>Other Rent/Month: $<input id="otherRentPerMonth" type="number" min="0" max="10000" onchange="grossRev()"</p>
+              <p>Vacancy Rate (%): <input id="vacancyRate" type="number" min="0" max="100"</p>
+            <h3 id="grossRevPerMonth">Gross Revenue/Month =</h3>
+            <h3 id="grossRevPerYear">Gross Revenue/Year =</h3>
+          </div>
+        </div>
+        <div class="propertyDetails" id="revenuesExpenses">
+          <div id="revenues">
+              <h2>Revenues</h2>
+                <p>Rental Income: $<input id="rentalIncome" type="number" min="0" max="10000000" </p>
+                <p>Vacancy Rate (%): <input id="vacancyRate" type="number" min="0" max="100" </p>
+                <p>Net Rental Income: $<input id="netRentalIncome" type="number" min="0" max="1000000" </p>
+                <p>Other Income: $<input id="otherIncome" type="number" min="0" max="1000000"</p>
+              <h3 id="grossIncome">Gross Income = </h3>
+            </div>
+            <div id="expenses">
+                <h2>Expenses</h2>
+                  <p>Property Taxes (Annual): $<input id="propertyTaxes" type="number" min="0" max="10000000" onchange="totalExpenses()"</p>
+                  <p>Insurance (Annual): $<input id="insurance" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                  <p>Property Mgmt (% Rent): <input id="propertyMgmt" type="number" min="0" max="100" onchange="totalExpenses()"</p>
+                  <p>Maintenance and Repairs (Annual): $<input id="maintenanceRepairs" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                  <p>Advertising (Annual): $<input id="advertising" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                  <p>Utilities (Annual): $<input id="utilities" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                  <p>Other 1 (Annual): $<input id="otherExpenses1" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                  <p>Other 2 (Monthly): $<input id="otherExpenses1" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                  <p>Other 3 (Monthly): $<input id="otherExpenses1" type="number" min="0" max="100000" onchange="totalExpenses()"</p>
+                <h3 id="totalExpenses">Total Expenses = </h3>
+              </div>
+        </div>
+  <script src="app.js"></script>
+  </body>
+</html>
