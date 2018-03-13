@@ -11,16 +11,16 @@
     <div class="first">
       <div id="costAssumptions">
           <h2>Cost Assumptions</h2>
-            <p>Purchase Price: $<input id="price" type="number" min="1" max="10000000000" onchange="sumValue()"></p>
-            <p>Improvements: $<input id="improvements" type="number" min="1" max="1000000" onchange="sumValue()"></p>
-            <p>Closing Costs: $<input id="closingCosts" type="number" min="1" max="1000000" onchange="sumValue()"></p>
+            <p>Purchase Price: $<input id="price" type="number" min="1" max="10000000000"></p>
+            <p>Improvements: $<input id="improvements" type="number" min="1" max="1000000"></p>
+            <p>Closing Costs: $<input id="closingCosts" type="number" min="1" max="1000000"></p>
           <h3 id="totalCost">Total Cost = </h3>
         </div>
         <div id="financingAssumptions">
             <h2>Financing Assumptions</h2>
               <p>Downpayment (%): <input id="downpayment" type="number" min="1" max="100000"></p>
               <p>Finance Amount: $<input id="FinAmt" type="number" min="1" max="10000000"></p>
-              <p>Downpayment Amount: $<input id="dwnpmtAmt" type="number" min="1" max="100000" onchange="cashOutlay()"></p>
+              <p>Downpayment Amount: $<input id="dwnpmtAmt" type="number" min="1" max="100000"></p>
               <p>Interest Rate (%): <input id="interestRate" type="number" min="0" max="100"></p>
               <p>Mortgage (Years): <input id="mortgageYrs" type="number" min="1" max="100"></p>
               <p>Mortgage Payment: $<input id="mortgagePayment" type="number" min="1" max="100000"></p>
@@ -29,8 +29,8 @@
           <div id="revenueAssumptions">
               <h2>Revenue Assumptions</h2>
                 <p># of Units: <input id="numOfUnits" type="number" min="1" max="1000"></p>
-                <p>Total Rent/Month: $<input id="totalRentPerMonth" type="number" min="0" max="10000" onchange="gossRev()"></p>
-                <p>Other Rent/Month: $<input id="otherRentPerMonth" type="number" min="0" max="10000" onchange="grossRev()"></p>
+                <p>Total Rent/Month: $<input id="totalRentPerMonth" type="number" min="0" max="10000"></p>
+                <p>Other Rent/Month: $<input id="otherRentPerMonth" type="number" min="0" max="10000"></p>
                 <p>Vacancy Rate (%): <input id="vacancyRate" type="number" min="0" max="100"></p>
               <h3 id="grossRevPerMonth">Gross Revenue/Month =</h3>
               <h3 id="grossRevPerYear">Gross Revenue/Year =</h3>
