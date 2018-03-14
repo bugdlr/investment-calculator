@@ -1,10 +1,11 @@
-(function() {
+// (function() {
 
   let price;
   let improvements;
   let closingCosts;
   let result;
   let downpayment;
+  let mortgagePayment;
   let totalRentPerMonth;
   let otherRevPerMonth;
   let vacancyRate;
@@ -21,12 +22,18 @@
   let other2;
   let other3;
   let propMgmtCalc;
-  let grossIncome;
-  let totalExpenses;
+  let grossIncomeVar;
+  let totalExpensesVar;
+  let netOI;
 
   const costAssumptions = document.getElementById("costAssumptions");
-  const dwnpmtAmt = document.getElementById("dwnpmtAmt");
+  const financingAssumptions = document.getElementById("financingAssumptions");
   const revenueAssumptions = document.getElementById("revenueAssumptions");
+  const revenues = document.getElementById("revenues");
+  const expenses = document.getElementById("expenses");
+  const mtg = document.getElementById("mtg");
+  const cashFlow = document.getElementById("cashFlow");
+
 
   // functions
   function setValues() {
@@ -34,6 +41,7 @@
     improvements = Number(document.getElementById("improvements").value);
     closingCosts = Number(document.getElementById("closingCosts").value);
     downpayment = Number(document.getElementById("dwnpmtAmt").value);
+    mortgagePayment = Number(document.getElementById("mortgagePayment").value);
     totalRentPerMonth = Number(document.getElementById("totalRentPerMonth").value);
     otherRevPerMonth = Number(document.getElementById("otherRevPerMonth").value);
     vacancyRate = Number(document.getElementById("vacancyRate").value);
@@ -49,8 +57,9 @@
     other1 = Number(document.getElementById("otherExpenses1").value);
     other2 = Number(document.getElementById("otherExpenses2").value);
     other3 = Number(document.getElementById("otherExpenses3").value);
-    grossIncome = Number(document.getElementById("grossIncome").value);
-    totalExpenses = Number(document.getElementById("totalExpenses").value);
+    grossIncomeVar = Number(document.getElementById("grossIncomeInput").value);
+    totalExpensesVar = Number(document.getElementById("totalExpenses").value);
+    netOI = Number(document.getElementById("cashAvailable").value);
   }
 
   function sumValue() {
@@ -63,6 +72,8 @@
     setValues();
     result = improvements + closingCosts + downpayment;
     document.getElementById('cashOutlay').innerHTML = "Cash Outlay = $" + result;
+    document.getElementById('mtg').value = (mortgagePayment * 12);
+    document.getElementById('mtg').value = (mortgagePayment * 12);
   }
 
   function grossRev() {
@@ -85,23 +96,22 @@
 
   function grossIncomeFun() {
     setValues();
-    document.getElementById('grossIncome').innerHTML = "Gross Income = $" + (netRentalIncome + otherIncome);
+    document.getElementById('grossIncomeInput').value = (netRentalIncome + otherIncome);
   }
 
   function totalExpensesFun() {
     setValues();
-    totalExpenses = (propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 *12));
-    document.getElementById('totalExpenses').innerHTML = "Total Expenses = $" + totalExpenses;
+    totalExpensesVar = (propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 *12));
+    document.getElementById('totalExpenses').innerHTML = "Total Expenses = $" + totalExpensesVar;
+    document.getElementById('netOI').value = (grossIncomeVar - totalExpensesVar);
+    document.getElementById('cashAvailable').value = (grossIncomeVar - totalExpensesVar);
+    document.getElementById('totalCashFlow').value = (netOI - (mortgagePayment * 12));
+    // document.getElementById('cashROI').value = (totalCashFlow/cashOutlay);
   }
 
   function propMgmtCal() {
     setValues();
     propMgmCalc = (propertyMgmt/100) * (totalRentPerMonth * 12);
-  }
-
-  function noi() {
-    setValues();
-    document.getElementById('NOI').innerHTML = "Net Operating Income (NOI) = $" + (grossIncome - totalExpenses);
   }
 
 
@@ -111,7 +121,7 @@
     sumValue();
   });
 
-  dwnpmtAmt.addEventListener('keyup', function (e) {
+  financingAssumptions.addEventListener('keyup', function (e) {
     e.preventDefault();
     cashOutlay();
   });
@@ -135,7 +145,6 @@
     e.preventDefault();
     propMgmtCal();
     totalExpensesFun();
-    noi();
   });
 
-})();
+// })();
