@@ -26,6 +26,8 @@
   let grossIncomeVar;
   let totalExpensesVar;
   let netOI;
+  let equity;
+  let appreciation;
 
   const costAssumptions = document.getElementById("costAssumptions");
   const financingAssumptions = document.getElementById("financingAssumptions");
@@ -68,6 +70,10 @@
     totalExpensesVar = Number(document.getElementById("totalExpenses").value);
     netOI = Number(document.getElementById("netOI").value);
     totalCashFlowVar = Number(document.getElementById("totalCashFlow").value);
+    equity = Number(document.getElementById("equity").value);
+    appreciation = Number(document.getElementById("appreciation").value);
+    totalReturnVar = Number(document.getElementById("totalReturn").value);
+    totalROIVar = Number(document.getElementById("totalROI").value);
   }
 
   function sumValue() {
@@ -92,7 +98,6 @@
     let numerator = rate * ((1 + rate) ** n);
     let denominator = ((1 + rate) ** n) - 1;
     document.getElementById('mortgagePayment').value = financeAmount * (numerator / denominator);
-    // add mortgage payment calculations
   }
 
   function grossRev() {
@@ -126,7 +131,7 @@
     document.getElementById('netOI').value = (grossIncomeVar - totalExpensesVar);
     document.getElementById('cashAvailable').value = netOI;
     document.getElementById('totalCashFlow').value = (netOI - (mortgagePayment * 12));
-    document.getElementById('cashROI').value = (totalCashFlowVar/cashOutlayVar);
+    document.getElementById('cashROI').value = (totalRentPerMonth/cashOutlayVar);
   }
 
   function propMgmtCal() {
@@ -137,6 +142,8 @@
   function cashFlowFun() {
     setValues();
     document.getElementById('cashROI').value = ((totalCashFlowVar/cashOutlayVar) * 100);
+    document.getElementById('totalReturn').value = totalCashFlowVar + equity + appreciation;
+    document.getElementById('totalROI').value = ((totalReturnVar/cashOutlayVar) * 100);
   }
 
 
@@ -177,6 +184,12 @@
     propMgmtCal();
     totalExpensesFun();
     cashFlowFun();
+  });
+
+  cashFlow.addEventListener('keyup', function (e) {
+    e.preventDefault();
+    cashFlowFun();
+    // totalROI is not updating in cashFlow, only in expenses
   });
 
 // })();
