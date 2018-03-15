@@ -33,6 +33,7 @@
   let totalReturnVar;
   let totalROIVar;
   let grm;
+  let annualCashFlow;
 
   const costAssumptions = document.getElementById("costAssumptions");
   const financingAssumptions = document.getElementById("financingAssumptions");
@@ -78,6 +79,7 @@
     grossIncomeVar = Number(document.getElementById("grossIncomeInput").value);
     totalExpensesVar = Number(document.getElementById("totalExpenses").value);
     netOI = Number(document.getElementById("netOI").value);
+    mtgVar = Number(document.getElementById("mtg").value);
     totalCashFlowVar = Number(document.getElementById("totalCashFlow").value);
     equity = Number(document.getElementById("equity").value);
     appreciation = Number(document.getElementById("appreciation").value);
@@ -86,6 +88,8 @@
     totalROIVar = Number(document.getElementById("totalROI").value);
     capRate = Number(document.getElementById("capRate").value);
     grm = Number(document.getElementById("GRM").value);
+    dscr = Number(document.getElementById("DSCR").value);
+    annualCashFlow = Number(document.getElementById("annualCashFlow").value);
   }
 
   function sumValue() {
@@ -148,10 +152,10 @@
     totalExpensesVar = (propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 *12));
     document.getElementById('totalExpenses').innerHTML = "Total Expenses = $" + totalExpensesVar;
     document.getElementById('netOI').value = (grossIncomeVar - totalExpensesVar);
-    document.getElementById('cashAvailable').value = netOI;
     document.getElementById('totalCashFlow').value = (netOI - (mortgagePayment * 12));
     document.getElementById('cashROI').value = (totalRentPerMonth/cashOutlayVar);
     document.getElementById('capRate').value = ((netOI / totalCost) * 100);
+    document.getElementById('cashAvailable').value = netOI;
   }
 
   function cashFlowFun() {
@@ -161,6 +165,8 @@
     document.getElementById('totalROI').value = ((totalReturnVar/cashOutlayVar) * 100);
     document.getElementById('cashROI2').value = cashROIVar;
     document.getElementById('totalROI2').value = totalROIVar;
+    document.getElementById('DSCR').value = (netOI / (mtgVar) * 100);
+    document.getElementById('annualCashFlow').value = totalCashFlowVar;
   }
 
 
@@ -200,7 +206,7 @@
     e.preventDefault();
     propMgmtCal();
     totalExpensesFun();
-    cashFlowFun();
+    // cashFlowFun();
   });
 
   cashFlow.addEventListener('keyup', function (e) {
