@@ -34,6 +34,7 @@
   const expenses = document.getElementById("expenses");
   const mtg = document.getElementById("mtg");
   const cashFlow = document.getElementById("cashFlow");
+  const mortgageYrs = document.getElementById("mortgageYrs");
 
 
   // functions
@@ -41,7 +42,11 @@
     price = Number(document.getElementById("price").value);
     improvements = Number(document.getElementById("improvements").value);
     closingCosts = Number(document.getElementById("closingCosts").value);
+    downpaymentPercent = Number(document.getElementById("downpayment").value);
+    financeAmount = Number(document.getElementById("FinAmt").value);
     downpayment = Number(document.getElementById("dwnpmtAmt").value);
+    interestRate = Number(document.getElementById("interestRate").value);
+    mortgageYearsVar = Number(document.getElementById("mortgageYrs").value);
     mortgagePayment = Number(document.getElementById("mortgagePayment").value);
     cashOutlayVar = Number(document.getElementById("cashOutlay").value)
     totalRentPerMonth = Number(document.getElementById("totalRentPerMonth").value);
@@ -71,12 +76,23 @@
     document.getElementById('totalCost').innerHTML = "Total Costs = $" + result;
   }
 
+  function financingCalc() {
+    setValues();
+    document.getElementById('dwnpmtAmt').value = (downpaymentPercent/100) * price;
+    document.getElementById('FinAmt').value = price - downpayment;
+  }
+
   function cashOutlay() {
     setValues();
     result = improvements + closingCosts + downpayment;
     document.getElementById('cashOutlay').value = result;
-    document.getElementById('mtg').value = (mortgagePayment * 12);
-    // add downpayment, finance amount, and mortgage payment calculations
+    document.getElementById('mtg').value = mortgagePayment * 12;
+    rate = (interestRate/100) / 12;
+    n = mortgageYearsVar * 12;
+    let numerator = rate * ((1 + rate) ** n);
+    let denominator = ((1 + rate) ** n) - 1;
+    document.getElementById('mortgagePayment').value = financeAmount * (numerator / denominator);
+    // add mortgage payment calculations
   }
 
   function grossRev() {
@@ -110,9 +126,7 @@
     document.getElementById('netOI').value = (grossIncomeVar - totalExpensesVar);
     document.getElementById('cashAvailable').value = netOI;
     document.getElementById('totalCashFlow').value = (netOI - (mortgagePayment * 12));
-    // document.getElementById('cashROI').value = (totalCashFlowVar/cashOutlayVar);
-    // cashROI is wrong
-    // cashAvailable and netOI should be the same but they aren't
+    document.getElementById('cashROI').value = (totalCashFlowVar/cashOutlayVar);
   }
 
   function propMgmtCal() {
@@ -133,6 +147,12 @@
   });
 
   financingAssumptions.addEventListener('keyup', function (e) {
+    e.preventDefault();
+    financingCalc();
+    // cashOutlay();
+  });
+
+  mortgageYrs.addEventListener('keyup', function (e) {
     e.preventDefault();
     cashOutlay();
   });
