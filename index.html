@@ -14,81 +14,81 @@
     <div class="first">
       <div id="costAssumptions">
         <h2>Cost Assumptions</h2>
-        <p>Purchase Price: $<input id="price" type="number" min="1" max="10000000000"></p>
-        <p>Improvements: $<input id="improvements" type="number" min="1" max="1000000"></p>
-        <p>Closing Costs: $<input id="closingCosts" type="number" min="1" max="1000000"></p>
-        <h3>Total Cost = $<input id="totalCost" type="number" min="1" max="1000000"></h3>
+        <p>Purchase Price: $<input class="userInput" id="price" type="number" min="1" max="10000000000"></p>
+        <p>Improvements: $<input class="userInput" id="improvements" type="number" min="1" max="1000000"></p>
+        <p>Closing Costs: $<input class="userInput" id="closingCosts" type="number" min="1" max="1000000"></p>
+        <h3>Total Cost = $<input class="calculation" id="totalCost" type="number" min="1" max="1000000"></h3>
       </div>
 
       <div id="financingAssumptions">
         <h2>Financing Assumptions</h2>
-        <p>Downpayment (%): <input id="downpayment" type="number" min="1" max="100000"></p>
-        <p>Finance Amount: $<input id="FinAmt" type="number" min="1" max="10000000"></p>
-        <p>Downpayment Amount: $<input id="dwnpmtAmt" type="number" min="1" max="100000"></p>
-        <p>Interest Rate (%): <input id="interestRate" type="number" min="0" max="100"></p>
-        <p>Mortgage (Years): <input id="mortgageYrs" type="number" min="1" max="100"></p>
-        <p>Mortgage Payment: $<input id="mortgagePayment" type="number" min="1" max="100000"></p>
-        <h3>Cash Outlay = $<input id="cashOutlay" type="number" min="1" max="100000"></h3>
+        <p>Downpayment (%): <input class="userInput" id="downpayment" type="number" min="1" max="100000"></p>
+        <p>Finance Amount: $<input class="calculation" id="FinAmt" type="number" min="1" max="10000000"></p>
+        <p>Downpayment Amount: $<input class="calculation" id="dwnpmtAmt" type="number" min="1" max="100000"></p>
+        <p>Interest Rate (%): <input class="userInput" id="interestRate" type="number" min="0" max="100"></p>
+        <p>Mortgage (Years): <input class="userInput" id="mortgageYrs" type="number" min="1" max="100"></p>
+        <p>Mortgage Payment: $<input class="calculation" id="mortgagePayment" type="number" min="1" max="100000"></p>
+        <h3>Cash Outlay = $<input class="calculation" id="cashOutlay" type="number" min="1" max="100000"></h3>
       </div>
 
       <div id="revenueAssumptions">
         <h2>Revenue Assumptions</h2>
-        <p># of Units: <input id="numOfUnits" type="number" min="1" max="1000"></p>
-        <p>Total Rent/Month: $<input id="totalRentPerMonth" type="number" min="0" max="10000"></p>
-        <p>Other Rev/Month: $<input id="otherRevPerMonth" type="number" min="0" max="10000"></p>
-        <p>Vacancy Rate (%): <input id="vacancyRate" type="number" min="0" max="100"></p>
-        <h3>Gross Revenue/Month = $<input id="grossRevPerMonth" type="number"></h3>
-        <h3>Gross Revenue/Year = $<input id="grossRevPerYear" type="number"></h3>
+        <p># of Units: <input class="userInput" id="numOfUnits" type="number" min="1" max="1000"></p>
+        <p>Total Rent/Month: $<input class="userInput" id="totalRentPerMonth" type="number" min="0" max="10000"></p>
+        <p>Other Rev/Month: $<input class="userInput" id="otherRevPerMonth" type="number" min="0" max="10000"></p>
+        <p>Vacancy Rate (%): <input class="userInput" id="vacancyRate" type="number" min="0" max="100"></p>
+        <h3>Gross Revenue/Month = $<input class="calculation" id="grossRevPerMonth" type="number"></h3>
+        <h3>Gross Revenue/Year = $<input class="calculation" id="grossRevPerYear" type="number"></h3>
       </div>
     </div>
 
     <div class="second">
       <div id="revenues">
         <h2>Revenues</h2>
-        <p>Rental Income: $<input id="rentalIncome" type="number" min="0" max="10000000"></p>
-        <p>Vacancy Cost: $<input id="vacCost" type="number" min="0" max="10000"></p>
-        <p>Net Rental Income: $<input id="netRentalIncome" type="number" min="0" max="1000000"></p>
-        <p>Other Income: $<input id="otherIncome" type="number" min="0" max="1000000"></p>
-        <h3>Gross Income = $<input id="grossIncomeInput" type="number" min="0" max="1000000"></h3>
+        <p>Rental Income: $<input class="calculation" id="rentalIncome" type="number" min="0" max="10000000"></p>
+        <p>Vacancy Cost: $<input class="calculation" id="vacCost" type="number" min="0" max="10000"></p>
+        <p>Net Rental Income: $<input class="calculation" id="netRentalIncome" type="number" min="0" max="1000000"></p>
+        <p>Other Income: $<input class="calculation" id="otherIncome" type="number" min="0" max="1000000"></p>
+        <h3>Gross Income = $<input class="calculation" id="grossIncomeInput" type="number" min="0" max="1000000"></h3>
       </div>
 
       <div id="expenses">
         <h2>Expenses</h2>
-        <p>Property Taxes (Annual): $<input id="propertyTaxes" type="number" min="0" max="10000000"></p>
-        <p>Insurance (Annual): $<input id="insurance" type="number" min="0" max="100000"></p>
-        <p>Property Mgmt (% Rent): <input id="propertyMgmt" type="number" min="0" max="100"></p>
-        <p>Maintenance and Repairs (Annual): $<input id="maintenanceRepairs" type="number" min="0" max="100000"></p>
-        <p>Advertising (Annual): $<input id="advertising" type="number" min="0" max="100000"></p>
-        <p>Utilities (Annual): $<input id="utilities" type="number" min="0" max="100000"></p>
-        <p>Other 1 (Annual): $<input id="otherExpenses1" type="number" min="0" max="100000"></p>
-        <p>Other 2 (Monthly): $<input id="otherExpenses2" type="number" min="0" max="100000"></p>
-        <p>Other 3 (Monthly): $<input id="otherExpenses3" type="number" min="0" max="100000"></p>
-        <h3>Total Expenses = $<input id="totalExpenses" type="number" min="0" max="100000"></h3>
-        <h3 id="NOI">Net Operating Income (NOI) = <input id="netOI" type="number" min="0" max="1000000"></p></h3>
+        <p>Property Taxes (Annual): $<input class="userInput" id="propertyTaxes" type="number" min="0" max="10000000"></p>
+        <p>Insurance (Annual): $<input class="userInput" id="insurance" type="number" min="0" max="100000"></p>
+        <p>Property Mgmt (% Rent): <input class="userInput" id="propertyMgmt" type="number" min="0" max="100"></p>
+        <p>Maintenance and Repairs (Annual): $<input class="userInput" id="maintenanceRepairs" type="number" min="0" max="100000"></p>
+        <p>Advertising (Annual): $<input class="userInput" id="advertising" type="number" min="0" max="100000"></p>
+        <p>Utilities (Annual): $<input class="userInput" id="utilities" type="number" min="0" max="100000"></p>
+        <p>Other 1 (Annual): $<input class="userInput" id="otherExpenses1" type="number" min="0" max="100000"></p>
+        <p>Other 2 (Monthly): $<input class="userInput" id="otherExpenses2" type="number" min="0" max="100000"></p>
+        <p>Other 3 (Monthly): $<input class="userInput" id="otherExpenses3" type="number" min="0" max="100000"></p>
+        <h3>Total Expenses = $<input class="calculation" id="totalExpenses" type="number" min="0" max="100000"></h3>
+        <h3 id="NOI">Net Operating Income (NOI) = <input class="calculation" id="netOI" type="number" min="0" max="1000000"></p></h3>
       </div>
 
       <div id="cashFlow">
         <h2>Cash Flow</h2>
-        <p>NOI (cash available): $<input id="cashAvailable" type="number" min="0" max="1000000"></p>
-        <p>Mortgage: $<input id="mtg" type="number" min="0" max="1000000"></p>
-        <h3>Total Cash Flow = <input id="totalCashFlow" type="number"></h3>
-        <h3>Cash ROI = <input id="cashROI" type="number"></h3>
-        <p>Equity Accrued: $<input id="equity" type="number" min="0" max="1000000"></p>
-        <p>Appreciation: $<input id="appreciation" type="number" min="0" max="1000000"></p>
-        <h3>Total Return = $<input id="totalReturn" type="number"></h3>
-        <h3>Total ROI = $<input id="totalROI" type="number"></h3>
+        <p>NOI (cash available): $<input class="calculation" id="cashAvailable" type="number" min="0" max="1000000"></p>
+        <p>Mortgage: $<input class="calculation" id="mtg" type="number" min="0" max="1000000"></p>
+        <h3>Total Cash Flow = <input class="calculation" id="totalCashFlow" type="number"></h3>
+        <h3>Cash ROI = <input class="calculation" id="cashROI" type="number"></h3>
+        <p>Equity Accrued: $<input class="userInput" id="equity" type="number" min="0" max="1000000"></p>
+        <p>Appreciation: $<input class="userInput" id="appreciation" type="number" min="0" max="1000000"></p>
+        <h3>Total Return = $<input class="calculation" id="totalReturn" type="number"></h3>
+        <h3>Total ROI = $<input class="calculation" id="totalROI" type="number"></h3>
       </div>
     </div>
 
     <div id="keyValues">
       <h2>Key Values</h2>
-      <p>Cost/Unit: $<input id="costPerUnit" type="number"></p>
-      <p>Capitalization Rate:<input id="capRate" type="number"></p>
-      <p>GRM: <input id="GRM" type="number"></p>
-      <p>Cash ROI: <input id="cashROI2" type="number"></p>
-      <p>Total ROI: <input id="totalROI2" type="number"></p>
-      <p>DSCR: <input id="DSCR" type="number"></p>
-      <p>Annual Cash Flow: $<input id="annualCashFlow" type="number"></p>
+      <p>Cost/Unit: $<input class="calculation" id="costPerUnit" type="number"></p>
+      <p>Capitalization Rate:<input class="calculation" id="capRate" type="number"></p>
+      <p>GRM: <input class="calculation" id="GRM" type="number"></p>
+      <p>Cash ROI: <input class="calculation" id="cashROI2" type="number"></p>
+      <p>Total ROI: <input class="calculation" id="totalROI2" type="number"></p>
+      <p>DSCR: <input class="calculation" id="DSCR" type="number"></p>
+      <p>Annual Cash Flow: $<input class="calculation" id="annualCashFlow" type="number"></p>
     </div>
   </div>
 

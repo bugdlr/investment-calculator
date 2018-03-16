@@ -210,6 +210,7 @@
   cashFlow.addEventListener('keyup', function (e) {
     e.preventDefault();
     cashFlowFun();
+    // cashROI is not updating correctly in key values
   });
 
 // })();

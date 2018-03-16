@@ -18,12 +18,12 @@ p {
   display: block;
   margin: 0 auto;
 }
-/* 
+
 input {
   border: 0px solid;
-} */
+}
 
-/* input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -35,4 +35,4 @@ input[type=number]::-webkit-outer-spin-button {
 
 .calculation {
   background-color: lightgray;
-} */
+}
