@@ -150,7 +150,7 @@
   function totalExpensesFun() {
     setValues();
     totalExpensesVar = (propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 *12));
-    document.getElementById('totalExpenses').innerHTML = "Total Expenses = $" + totalExpensesVar;
+    document.getElementById('totalExpenses').value = totalExpensesVar;
     document.getElementById('netOI').value = (grossIncomeVar - totalExpensesVar);
     document.getElementById('totalCashFlow').value = (netOI - (mortgagePayment * 12));
     document.getElementById('cashROI').value = (totalRentPerMonth/cashOutlayVar);
@@ -179,7 +179,6 @@
   financingAssumptions.addEventListener('keyup', function (e) {
     e.preventDefault();
     financingCalc();
-    // cashOutlay();
   });
 
   mortgageYrs.addEventListener('keyup', function (e) {
@@ -206,13 +205,11 @@
     e.preventDefault();
     propMgmtCal();
     totalExpensesFun();
-    // cashFlowFun();
   });
 
   cashFlow.addEventListener('keyup', function (e) {
     e.preventDefault();
     cashFlowFun();
-    // totalROI is not updating in cashFlow, only in expenses
   });
 
 // })();
