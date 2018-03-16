@@ -21,6 +21,8 @@ p {
 
 input {
   border: 0px solid;
+  border-radius: 7%;
+  font-size: 14px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -30,9 +32,20 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .userInput {
-  background-color: lightblue;
+  background-color: #d6eaf5;
 }
 
 .calculation {
-  background-color: lightgray;
+  background-color: #f2f2f2;
+}
+
+#keyValues  {
+  font-weight: bold;
+}
+
+@media (max-width: 1055px) {
+  div {
+    display: block;
+    margin-bottom: 50px;
+  }
 }

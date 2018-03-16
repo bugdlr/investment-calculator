@@ -47,7 +47,7 @@
 
   // functions
   function setValues() {
-    price = Number(document.getElementById("price").value);
+    price = (Number(document.getElementById("price").value));
     improvements = Number(document.getElementById("improvements").value);
     closingCosts = Number(document.getElementById("closingCosts").value);
     totalCost = Number(document.getElementById("totalCost").value)
@@ -91,17 +91,17 @@
     dscr = Number(document.getElementById("DSCR").value);
     annualCashFlow = Number(document.getElementById("annualCashFlow").value);
   }
-
-  function numberFormat() {
-    let inputs = document.getElementsByTagName('input');
-    for (var i = 0; i < inputs.length; i += 1) {
-      inputs[i].value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-      }
-  }
+  //
+  // function numberFormat() {
+  //   let inputs = document.getElementsByTagName('input');
+  //   for (var i = 0; i < inputs.length; i += 1) {
+  //     accounting.formatMoney(inputs[i].value);
+  //   }
+  // }
 
   function sumValue() {
     setValues();
-    numberFormat();
+    // numberFormat();
     result = price + improvements + closingCosts;
     document.getElementById('totalCost').value = result;
   }
