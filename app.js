@@ -92,8 +92,16 @@
     annualCashFlow = Number(document.getElementById("annualCashFlow").value);
   }
 
+  function numberFormat() {
+    let inputs = document.getElementsByTagName('input');
+    for (var i = 0; i < inputs.length; i += 1) {
+      inputs[i].value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+      }
+  }
+
   function sumValue() {
     setValues();
+    numberFormat();
     result = price + improvements + closingCosts;
     document.getElementById('totalCost').value = result;
   }
@@ -168,6 +176,8 @@
     document.getElementById('DSCR').value = (netOI / (mtgVar) * 100);
     document.getElementById('annualCashFlow').value = totalCashFlowVar;
   }
+
+
 
 
   // event listeners
