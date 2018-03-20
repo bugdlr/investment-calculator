@@ -93,15 +93,16 @@
   }
 
   function numberFormat() {
-    let inputs =  document.getElementsByTagName('input');
-    let moneyInputs = [];
+    let inputs =  document.querySelectorAll('.money');
     for (var i = 0; i < inputs.length; i += 1) {
-      moneyInputs.push(inputs[i]);
-    for (var i = 0; i < moneyInputs.length; i += 1) {
-      moneyInputs[i].value = accounting.formatMoney(moneyInputs[i].value);
-      }
-    }
+     // if ($(inputs[i]).hasClass("money") === true) {
+       inputs[i].value = accounting.formatMoney(inputs[i].value);
+       console.log(inputs[i]);
+    // }
+   }
   }
+
+  // test = $(costAssumptions).hasClass("money");
 
   function sumValue() {
     setValues();
@@ -113,7 +114,7 @@
     setValues();
      document.getElementById('dwnpmtAmt').value = (downpaymentPercent/100) * price;
      document.getElementById('FinAmt').value = price - downpayment;
-     numberFormat();
+     // numberFormat();
   }
 
   function cashOutlay() {
