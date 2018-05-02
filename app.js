@@ -229,3 +229,14 @@
   });
 
 // })();
+
+
+/**
+ * TO DO
+    local storage
+    reset button
+    format money
+    consolidate event listeners
+      hide ones that haven't been calculated yet
+    add css grid for responsiveness
+ */
