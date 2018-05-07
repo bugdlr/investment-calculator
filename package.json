@@ -1,0 +1,19 @@
+{
+  "name": "investment-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "accounting.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugdlr/investment-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bugdlr/investment-calculator/issues"
+  },
+  "homepage": "https://github.com/bugdlr/investment-calculator#readme"
+}
