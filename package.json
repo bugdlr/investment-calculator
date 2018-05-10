@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bugdlr/investment-calculator/issues"
   },
-  "homepage": "https://github.com/bugdlr/investment-calculator#readme"
+  "homepage": "https://github.com/bugdlr/investment-calculator#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }
