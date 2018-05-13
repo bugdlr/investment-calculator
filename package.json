@@ -17,13 +17,13 @@
   },
   "homepage": "https://github.com/bugdlr/investment-calculator#readme",
   "dependencies": {
-  "gulp": "latest",
-  "gulp-less": "latest",
-  "path": "latest",
-  "gulp-cssmin": "latest",
-  "gulp-rename": "latest",
-  "gulp-watch": "latest",
-  "gulp-connect": "latest",
-  "gulp-open": "latest"
+    "gulp": "latest",
+    "gulp-less": "latest",
+    "path": "latest",
+    "gulp-cssmin": "latest",
+    "gulp-rename": "latest",
+    "gulp-watch": "latest",
+    "gulp-connect": "latest",
+    "gulp-open": "latest"
   }
 }
