@@ -34,6 +34,7 @@
   let totalROIVar;
   let grm;
   let annualCashFlow;
+  let inputs = [];
 
   const costAssumptions =  document.getElementById("costAssumptions");
   const financingAssumptions =  document.getElementById("financingAssumptions");
@@ -92,17 +93,17 @@
     annualCashFlow = Number(document.getElementById("annualCashFlow").value);
   }
 
-  function numberFormat() {
-    let inputs =  document.querySelectorAll('.money');
-    for (var i = 0; i < inputs.length; i += 1) {
-     // if ($(inputs[i]).hasClass("money") === true) {
-       inputs[i].value = accounting.formatMoney(inputs[i].value);
-       console.log(inputs[i]);
-    // }
-   }
+  inputs = Array.from(document.querySelectorAll('.money'));
+  options = {style : "currency", currency: "USD"};
+  inputArray = [];
+
+  function inputValues (inputs) {
+    for (let i = 0; i < inputs.length; i += 1) {
+      let moneyInput = Number(inputs[i].value).toLocaleString("en-US", options);
+      inputArray.push(moneyInput);
+    } return inputArray;
   }
 
-  // test = $(costAssumptions).hasClass("money");
 
   function sumValue() {
     setValues();
