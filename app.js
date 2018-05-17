@@ -45,6 +45,7 @@
   const cashFlow =  document.getElementById("cashFlow");
   const mortgageYrs =  document.getElementById("mortgageYrs");
 
+  new AutoNumeric('.money', { currencySymbol : '$' });
 
   // functions
   function setValues() {
@@ -103,7 +104,6 @@
       inputArray.push(moneyInput);
     } return inputArray;
   }
-
 
   function sumValue() {
     setValues();
