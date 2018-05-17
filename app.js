@@ -45,7 +45,7 @@
   const cashFlow =  document.getElementById("cashFlow");
   const mortgageYrs =  document.getElementById("mortgageYrs");
 
-  new AutoNumeric('.money', { currencySymbol : '$' });
+  new AutoNumeric.multiple('.money', { currencySymbol : '$' });
 
   // functions
   function setValues() {
