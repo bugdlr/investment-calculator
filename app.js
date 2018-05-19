@@ -45,60 +45,61 @@
   const cashFlow =  document.getElementById("cashFlow");
   const mortgageYrs =  document.getElementById("mortgageYrs");
 
-  new AutoNumeric.multiple('.money', { currencySymbol : '$' });
+  // new AutoNumeric.multiple('.money', { currencySymbol : '$' });
 
   // functions
   function setValues() {
-    price = Number(document.getElementById("price").value);
-    improvements = Number(document.getElementById("improvements").value);
-    closingCosts = Number(document.getElementById("closingCosts").value);
-    totalCost = Number(document.getElementById("totalCost").value);
-    downpaymentPercent = Number(document.getElementById("downpayment").value);
-    financeAmount = Number(document.getElementById("FinAmt").value);
-    downpayment = Number(document.getElementById("dwnpmtAmt").value);
-    interestRate = Number(document.getElementById("interestRate").value);
-    mortgageYearsVar = Number(document.getElementById("mortgageYrs").value);
-    mortgagePayment = Number(document.getElementById("mortgagePayment").value);
-    cashOutlayVar = Number(document.getElementById("cashOutlay").value);
-    numOfUnits = Number(document.getElementById("numOfUnits").value);
-    totalRentPerMonth =  Number(document.getElementById("totalRentPerMonth").value);
-    otherRevPerMonth = Number(document.getElementById("otherRevPerMonth").value);
-    grossRevPerMonth = Number(document.getElementById("grossRevPerMonth").value);
-    grossRevPerYear = Number(document.getElementById("grossRevPerYear").value);
-    vacancyRate = Number(document.getElementById("vacancyRate").value);
-    vacancyCost = Number(document.getElementById("vacCost").value);
-    netRentalIncome = Number(document.getElementById("netRentalIncome").value);
-    otherIncome = Number(document.getElementById("otherIncome").value);
-    propertyTaxes = Number(document.getElementById("propertyTaxes").value);
-    insurance = Number(document.getElementById("insurance").value);
-    propertyMgmt = Number(document.getElementById("propertyMgmt").value);
-    mtRepairs = Number(document.getElementById("maintenanceRepairs").value);
-    advertising = Number(document.getElementById("advertising").value);
-    utilities = Number(document.getElementById("utilities").value);
-    other1 = Number(document.getElementById("otherExpenses1").value);
-    other2 = Number(document.getElementById("otherExpenses2").value);
-    other3 = Number(document.getElementById("otherExpenses3").value);
-    grossIncomeVar = Number(document.getElementById("grossIncomeInput").value);
-    totalExpensesVar = Number(document.getElementById("totalExpenses").value);
-    netOI = Number(document.getElementById("netOI").value);
-    mtgVar = Number(document.getElementById("mtg").value);
-    totalCashFlowVar = Number(document.getElementById("totalCashFlow").value);
-    equity = Number(document.getElementById("equity").value);
-    appreciation = Number(document.getElementById("appreciation").value);
-    cashROIVar = Number(document.getElementById("cashROI").value);
-    totalReturnVar = Number(document.getElementById("totalReturn").value);
-    totalROIVar = Number(document.getElementById("totalROI").value);
-    capRate = Number(document.getElementById("capRate").value);
-    grm = Number(document.getElementById("GRM").value);
-    dscr = Number(document.getElementById("DSCR").value);
-    annualCashFlow = Number(document.getElementById("annualCashFlow").value);
+      price = Number(document.getElementById("price").value);
+      improvements = Number(document.getElementById("improvements").value);
+      closingCosts = Number(document.getElementById("closingCosts").value);
+      totalCost = Number(document.getElementById("totalCost").value);
+      downpaymentPercent = Number(document.getElementById("downpayment").value);
+      financeAmount = Number(document.getElementById("FinAmt").value);
+      downpayment = Number(document.getElementById("dwnpmtAmt").value);
+      interestRate = Number(document.getElementById("interestRate").value);
+      mortgageYearsVar = Number(document.getElementById("mortgageYrs").value);
+      mortgagePayment = Number(document.getElementById("mortgagePayment").value);
+      cashOutlayVar = Number(document.getElementById("cashOutlay").value);
+      numOfUnits = Number(document.getElementById("numOfUnits").value);
+      totalRentPerMonth =  Number(document.getElementById("totalRentPerMonth").value);
+      otherRevPerMonth = Number(document.getElementById("otherRevPerMonth").value);
+      grossRevPerMonth = Number(document.getElementById("grossRevPerMonth").value);
+      grossRevPerYear = Number(document.getElementById("grossRevPerYear").value);
+      vacancyRate = Number(document.getElementById("vacancyRate").value);
+      vacancyCost = Number(document.getElementById("vacCost").value);
+      netRentalIncome = Number(document.getElementById("netRentalIncome").value);
+      otherIncome = Number(document.getElementById("otherIncome").value);
+      propertyTaxes = Number(document.getElementById("propertyTaxes").value);
+      insurance = Number(document.getElementById("insurance").value);
+      propertyMgmt = Number(document.getElementById("propertyMgmt").value);
+      mtRepairs = Number(document.getElementById("maintenanceRepairs").value);
+      advertising = Number(document.getElementById("advertising").value);
+      utilities = Number(document.getElementById("utilities").value);
+      other1 = Number(document.getElementById("otherExpenses1").value);
+      other2 = Number(document.getElementById("otherExpenses2").value);
+      other3 = Number(document.getElementById("otherExpenses3").value);
+      grossIncomeVar = Number(document.getElementById("grossIncomeInput").value);
+      totalExpensesVar = Number(document.getElementById("totalExpenses").value);
+      netOI = Number(document.getElementById("netOI").value);
+      mtgVar = Number(document.getElementById("mtg").value);
+      totalCashFlowVar = Number(document.getElementById("totalCashFlow").value);
+      equity = Number(document.getElementById("equity").value);
+      appreciation = Number(document.getElementById("appreciation").value);
+      cashROIVar = Number(document.getElementById("cashROI").value);
+      totalReturnVar = Number(document.getElementById("totalReturn").value);
+      totalROIVar = Number(document.getElementById("totalROI").value);
+      capRate = Number(document.getElementById("capRate").value);
+      grm = Number(document.getElementById("GRM").value);
+      dscr = Number(document.getElementById("DSCR").value);
+      annualCashFlow = Number(document.getElementById("annualCashFlow").value);
+      inputs = [price, improvements, closingCosts, result, downpayment, mortgagePayment, cashOutlayVar, totalRentPerMonth, otherRevPerMonth, vacancyRate, vacancyCost, netRentalIncome, otherIncome, propertyTaxes, insurance, propertyMgmt, mtRepairs, advertising, utilities, other1, other2, other3, propMgmtCalc, grossIncomeVar, totalExpensesVar, netOI, equity, appreciation, capRate, cashROIVar, totalReturnVar, totalROIVar, grm, annualCashFlow];
   }
 
-  inputs = Array.from(document.querySelectorAll('.money'));
+  inputs = [...(document.querySelectorAll('input'))];
   options = {style : "currency", currency: "USD"};
   inputArray = [];
 
-  function inputValues (inputs) {
+  function moneyInputs (inputs) {
     for (let i = 0; i < inputs.length; i += 1) {
       let moneyInput = Number(inputs[i].value).toLocaleString("en-US", options);
       inputArray.push(moneyInput);
