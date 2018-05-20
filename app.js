@@ -114,7 +114,7 @@
 
   function financingCalc() {
     setValues();
-     document.getElementById('dwnpmtAmt').value = (downpaymentPercent/100) * price;
+     document.getElementById('dwnpmtAmt').value = (downpaymentPercent / 100) * price;
      document.getElementById('FinAmt').value = price - downpayment;
      // numberFormat();
   }
@@ -124,7 +124,7 @@
     result = improvements + closingCosts + downpayment;
      document.getElementById('cashOutlay').value = result;
      document.getElementById('mtg').value = mortgagePayment * 12;
-    rate = (interestRate/100) / 12;
+    rate = (interestRate / 100) / 12;
     n = mortgageYearsVar * 12;
     let numerator = rate * ((1 + rate) ** n);
     let denominator = ((1 + rate) ** n) - 1;
@@ -135,16 +135,16 @@
     setValues();
     result = totalRentPerMonth + otherRevPerMonth;
      document.getElementById('grossRevPerMonth').value = result;
-     document.getElementById('grossRevPerYear').value = (result * 12);
-     document.getElementById('rentalIncome').value = (totalRentPerMonth * 12);
-     document.getElementById('otherIncome').value = (otherRevPerMonth * 12);
+     document.getElementById('grossRevPerYear').value = result * 12;
+     document.getElementById('rentalIncome').value = totalRentPerMonth * 12;
+     document.getElementById('otherIncome').value = otherRevPerMonth * 12;
      document.getElementById('costPerUnit').value = totalCost / numOfUnits;
      document.getElementById('GRM').value = totalCost / grossRevPerYear;
   }
 
   function vacCost() {
     setValues();
-     document.getElementById('vacCost').value = (vacancyRate/100) * (totalRentPerMonth * 12);
+     document.getElementById('vacCost').value = (vacancyRate / 100) * (totalRentPerMonth * 12);
   }
 
   function netRentIncome() {
@@ -159,28 +159,28 @@
 
   function propMgmtCal() {
     setValues();
-    propMgmCalc = (propertyMgmt/100) * netRentalIncome;
+    propMgmCalc = (propertyMgmt / 100) * netRentalIncome;
   }
 
   function totalExpensesFun() {
     setValues();
-    totalExpensesVar = (propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 *12));
+    totalExpensesVar = propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 * 12);
      document.getElementById('totalExpenses').value = totalExpensesVar;
      document.getElementById('netOI').value = (grossIncomeVar - totalExpensesVar);
-     document.getElementById('totalCashFlow').value = (netOI - (mortgagePayment * 12));
-     document.getElementById('cashROI').value = (totalRentPerMonth/cashOutlayVar);
-     document.getElementById('capRate').value = ((netOI / totalCost) * 100);
+     document.getElementById('totalCashFlow').value = netOI - (mortgagePayment * 12);
+     document.getElementById('cashROI').value = (totalRentPerMonth / cashOutlayVar);
+     document.getElementById('capRate').value = (netOI / totalCost) * 100;
      document.getElementById('cashAvailable').value = netOI;
   }
 
   function cashFlowFun() {
     setValues();
-     document.getElementById('cashROI').value = ((totalCashFlowVar/cashOutlayVar) * 100);
+     document.getElementById('cashROI').value = (totalCashFlowVar / cashOutlayVar) * 100;
      document.getElementById('totalReturn').value = totalCashFlowVar + equity + appreciation;
-     document.getElementById('totalROI').value = ((totalReturnVar/cashOutlayVar) * 100);
+     document.getElementById('totalROI').value = (totalReturnVar / cashOutlayVar) * 100;
      document.getElementById('cashROI2').value = cashROIVar;
      document.getElementById('totalROI2').value = totalROIVar;
-     document.getElementById('DSCR').value = (netOI / (mtgVar) * 100);
+     document.getElementById('DSCR').value = (netOI / mtgVar) * 100;
      document.getElementById('annualCashFlow').value = totalCashFlowVar;
   }
 
