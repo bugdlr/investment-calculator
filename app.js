@@ -59,6 +59,7 @@ const options = {
 // functions
 
 function setValues() {
+  inputsIntoNumbers(allInputs);
   price = Number(document.getElementById("price").value);
   improvements = Number(document.getElementById("improvements").value);
   closingCosts = Number(document.getElementById("closingCosts").value);
@@ -104,40 +105,43 @@ function setValues() {
   annualCashFlow = Number(document.getElementById("annualCashFlow").value);
 }
 
-
 function sumTotalCost() {
   result = price + improvements + closingCosts;
   document.getElementById('totalCost').value = result;
+  cashOutlay();
 }
 
 function cashOutlay() {
   document.getElementById('dwnpmtAmt').value = (downpaymentPercent / 100) * price;
   document.getElementById('FinAmt').value = price - downpayment;
-  result = improvements + closingCosts + downpayment;
-  document.getElementById('cashOutlay').value = result;
+  total = improvements + closingCosts + downpayment;
+  document.getElementById('cashOutlay').value = total;
   document.getElementById('mtg').value = mortgagePayment * 12;
   rate = (interestRate / 100) / 12;
   n = mortgageYearsVar * 12;
   let numerator = rate * ((1 + rate) ** n);
   let denominator = ((1 + rate) ** n) - 1;
   document.getElementById('mortgagePayment').value = financeAmount * (numerator / denominator);
+  grossRev();
 }
 
 function grossRev() {
-  result = totalRentPerMonth + otherRevPerMonth;
-  document.getElementById('grossRevPerMonth').value = result;
-  document.getElementById('grossRevPerYear').value = (result * 12);
+  totalRev = totalRentPerMonth + otherRevPerMonth;
+  document.getElementById('grossRevPerMonth').value = totalRev;
+  document.getElementById('grossRevPerYear').value = (totalRev * 12);
   document.getElementById('rentalIncome').value = (totalRentPerMonth * 12);
   document.getElementById('otherIncome').value = (otherRevPerMonth * 12);
   document.getElementById('costPerUnit').value = totalCost / numOfUnits;
   document.getElementById('GRM').value = totalCost / grossRevPerYear;
+  calcGrossIncome();
 }
 
 function calcGrossIncome() {
   document.getElementById('vacCost').value = (vacancyRate / 100) * (totalRentPerMonth * 12);
   document.getElementById('netRentalIncome').value = (totalRentPerMonth * 12) - vacancyCost;
   document.getElementById('grossIncomeInput').value = (netRentalIncome + otherIncome);
-}allInputs
+  calcTotalExpenses();
+}
 
 function calcTotalExpenses() {
   propMgmCalc = (propertyMgmt / 100) * netRentalIncome;
@@ -148,6 +152,7 @@ function calcTotalExpenses() {
   document.getElementById('cashROI').value = (totalRentPerMonth / cashOutlayVar);
   document.getElementById('capRate').value = ((netOI / totalCost) * 100);
   document.getElementById('cashAvailable').value = netOI;
+  calcCashFlow();
 }
 
 function calcCashFlow() {
@@ -162,38 +167,43 @@ function calcCashFlow() {
 
 function hideNaNs() {
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].value == "NaN") {
-      inputs[i].value = "";
+    if (inputs[i].value.includes == "NaN" || inputs[i].value == "$0.00") {
+      inputs[i].style.display = "none";
     }
   }
 }
 
 function toFixed(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].value) {
+    if (inputs[i].value !== "" && !(inputs[i].value.includes("NaN"))) {
       inputs[i].value = Number(inputs[i].value).toFixed(2) + "%";
     }
   }
 }
 
-function moneyIntoNumbers (inputs) {
+function inputsIntoNumbers (inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    inputs[i].value = accounting.unformat(inputs[i].value);
+    if(inputs[i].value.includes("$")) {
+      inputs[i].value = accounting.unformat(inputs[i].value);
+    } else {
+      inputs[i].value = inputs[i].value.replace(/\D/g, "");
+    }
     // let array = inputs[i].value.split("");
     // let dollars = array.splice(0, array.length - 3).join("");
     // let cents = array.splice(-3, 3).join("");
     // dollars = dollars.replace(/\D/g,'');
     // inputs[i].value = dollars + cents;
   }
-  format = "numbers";
+  // format = "numbers";
 }
 
 function numbersIntoMoney(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if(inputs[i].value !== "NaN" && inputs[i].value !== "Infinity") {
+    if (!(inputs[i].value.includes("$") || inputs[i].value == "" || inputs[i].value == "0")) {
       inputs[i].value = accounting.formatMoney(Number(inputs[i].value));
       // inputs[i].value = Number(inputs[i].value).toLocaleString("en-US", options);
-    } format = "money";
+    }
+    // format = "money";
   }
 }
 
@@ -204,27 +214,26 @@ function numbersIntoMoney(inputs) {
  * TO DO
     local storage
     reset button
-    format money
-    add css grid for responsiveness
  */
 
 
 // event listener
-container.addEventListener('keyup', () => {
-  moneyIntoNumbers(moneyInputs);
-  setValues();
-  sumTotalCost();
-  cashOutlay();
-  grossRev();
-  calcGrossIncome();
-  calcTotalExpenses();
-  calcCashFlow();
+container.addEventListener('keyup', function(event) {
+  if (event.key !== "Enter") {
+    setValues();
+    sumTotalCost();
+  }
 });
-
+//
 container.addEventListener('keyup', function(event) {
   if(event.key == "Enter") {
     numbersIntoMoney(moneyInputs);
-    hideNaNs(allInputs);
+    // hideNaNs(allInputs);
     toFixed(fixedInputs);
   }
 })
+
+
+// function calculate () {
+//   inputsIntoNumbers(moneyInputs);
+// }
