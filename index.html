@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real Estate Investment Deal Analysis Calculator</title>
   <link rel="stylesheet" href="css/style.min.css">
-  <script type="text/javascript" src="accounting.min.js">
-
-  </script>
+  <link href="https://fonts.googleapis.com/css?family=Thasadith:400,700" rel="stylesheet">
+  <script type="text/javascript" src="accounting.min.js"></script>
 </head>
 
 <body>
 
+  <h1>Is this property a good investment?</h1>
+
   <div class="container">
-    <h1>Real Estate Investment Deal Analysis Calculator</h1>
-    <div id="costAssumptions">
+    <div class="card" id="costAssumptions">
       <h2>Cost Assumptions</h2>
       <p>Purchase Price: <input class="userInput money" id="price" type="text"></p>
       <p>Improvements: <input class="userInput money" id="improvements" type="text"></p>
@@ -23,7 +23,7 @@
       <h3>Total Cost = <input class="calculation money" id="totalCost" type="text"></h3>
     </div>
 
-    <div id="financingAssumptions">
+    <div class="card" id="financingAssumptions">
       <h2>Financing Assumptions</h2>
       <p>Downpayment (%): <input class="userInput" id="downpayment" type="text"></p>
       <p>Finance Amount: <input class="calculation money" id="FinAmt" type="text"></p>
@@ -34,7 +34,7 @@
       <h3>Cash Outlay = <input class="calculation money" id="cashOutlay" type="text"></h3>
     </div>
 
-    <div id="revenueAssumptions">
+    <div class="card" id="revenueAssumptions">
       <h2>Revenue Assumptions</h2>
       <p># of Units: <input class="userInput" id="numOfUnits" type="text"></p>
       <p>Total Rent/Month: <input class="userInput money" id="totalRentPerMonth" type="text"></p>
@@ -44,7 +44,7 @@
       <h3>Gross Revenue/Year = <input class="calculation money" id="grossRevPerYear" type="text"></h3>
     </div>
 
-    <div id="revenues">
+    <div class="card" id="revenues">
       <h2>Revenues</h2>
       <p>Rental Income: <input class="calculation money" id="rentalIncome" type="text"></p>
       <p>Vacancy Cost: <input class="calculation money" id="vacCost" type="text"></p>
@@ -53,7 +53,7 @@
       <h3>Gross Income = <input class="calculation money" id="grossIncomeInput" type="text"></h3>
     </div>
 
-    <div id="expenses">
+    <div class="card" id="expenses">
       <h2>Expenses</h2>
       <p>Property Taxes (Annual): <input class="userInput money" id="propertyTaxes" type="text"></p>
       <p>Insurance (Annual): <input class="userInput money" id="insurance" type="text"></p>
@@ -68,7 +68,7 @@
       <h3 id="NOI">Net Operating Income (NOI) = <input class="calculation money" id="netOI" type="text"></p></h3>
     </div>
 
-    <div id="cashFlow">
+    <div class="card" id="cashFlow">
       <h2>Cash Flow</h2>
       <p>NOI (cash available): <input class="calculation money" id="cashAvailable" type="text"></p>
       <p>Mortgage: <input class="calculation money" id="mtg" type="text"></p>
@@ -80,7 +80,7 @@
       <h3>Total ROI = <input class="calculation fixed" id="totalROI" type="text"></h3>
     </div>
 
-    <div id="keyValues">
+    <div class="card" id="keyValues">
       <h2>Key Values</h2>
       <p>Cost/Unit: <input class="calculation money" id="costPerUnit" type="text"></p>
       <p>Capitalization Rate:<input class="calculation fixed" id="capRate" type="text"></p>
