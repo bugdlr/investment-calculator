@@ -49,6 +49,8 @@ const mortgageYrs = document.getElementById("mortgageYrs");
 const container = document.querySelector(".container");
 const allInputs = Array.from(document.getElementsByTagName('input'));
 const moneyInputs = Array.from(document.querySelectorAll('.money'));
+const calculationInputs = Array.from(document.getElementsByClassName("calculation"));
+const fixedInputs = Array.from(document.getElementsByClassName("fixed"));
 const options = {
   style: "currency",
   currency: "USD"
@@ -96,8 +98,7 @@ function setValues() {
   cashROIVar = Number(document.getElementById("cashROI").value);
   totalReturnVar = Number(document.getElementById("totalReturn").value);
   totalROIVar = Number(document.getElementById("totalROI").value);
-  capRate = Array.from(document.querySelectorAll('.money'));
-  pRate = Number(document.getElementById("capRate").value);
+  capRate = Number(document.getElementById("capRate").value);
   grm = Number(document.getElementById("GRM").value);
   dscr = Number(document.getElementById("DSCR").value);
   annualCashFlow = Number(document.getElementById("annualCashFlow").value);
@@ -136,7 +137,7 @@ function calcGrossIncome() {
   document.getElementById('vacCost').value = (vacancyRate / 100) * (totalRentPerMonth * 12);
   document.getElementById('netRentalIncome').value = (totalRentPerMonth * 12) - vacancyCost;
   document.getElementById('grossIncomeInput').value = (netRentalIncome + otherIncome);
-}
+}allInputs
 
 function calcTotalExpenses() {
   propMgmCalc = (propertyMgmt / 100) * netRentalIncome;
@@ -167,23 +168,34 @@ function hideNaNs() {
   }
 }
 
+function toFixed(inputs) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].value) {
+      inputs[i].value = Number(inputs[i].value).toFixed(2) + "%";
+    }
+  }
+}
+
 function moneyIntoNumbers (inputs) {
-  for (let i = 0; i < inputs.length - 3; i++) {
-    inputs[i].value = Number(inputs[i].value.replace(/\D/g,''));
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].value = accounting.unformat(inputs[i].value);
+    // let array = inputs[i].value.split("");
+    // let dollars = array.splice(0, array.length - 3).join("");
+    // let cents = array.splice(-3, 3).join("");
+    // dollars = dollars.replace(/\D/g,'');
+    // inputs[i].value = dollars + cents;
   }
   format = "numbers";
 }
 
 function numbersIntoMoney(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].value) {
-      inputs[i].value = Number(inputs[i].value).toLocaleString("en-US", options);
-      inputs[i].setAttribute("type", "text");
-    }
-  } format = "money";
+    if(inputs[i].value !== "NaN" && inputs[i].value !== "Infinity") {
+      inputs[i].value = accounting.formatMoney(Number(inputs[i].value));
+      // inputs[i].value = Number(inputs[i].value).toLocaleString("en-US", options);
+    } format = "money";
+  }
 }
-
-
 
 // })();
 
@@ -197,9 +209,9 @@ function numbersIntoMoney(inputs) {
  */
 
 
-
 // event listener
 container.addEventListener('keyup', () => {
+  moneyIntoNumbers(moneyInputs);
   setValues();
   sumTotalCost();
   cashOutlay();
@@ -207,15 +219,12 @@ container.addEventListener('keyup', () => {
   calcGrossIncome();
   calcTotalExpenses();
   calcCashFlow();
-  // hideNaNs(allInputs);
 });
 
-// container.addEventListener('keyup', function(event) {
-//   if(event.key == "Enter") {
-//     if(format == "numbers") {
-//       numbersIntoMoney(moneyInputs);
-//     }
-//   }
-// })
-
-// new AutoNumeric.multiple('.money', { currencySymbol : '$' });
+container.addEventListener('keyup', function(event) {
+  if(event.key == "Enter") {
+    numbersIntoMoney(moneyInputs);
+    hideNaNs(allInputs);
+    toFixed(fixedInputs);
+  }
+})

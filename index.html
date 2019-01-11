@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real Estate Investment Deal Analysis Calculator</title>
   <link rel="stylesheet" href="css/style.min.css">
+  <script type="text/javascript" src="accounting.min.js">
+
+  </script>
 </head>
 
 <body>
@@ -14,7 +17,7 @@
     <h1>Real Estate Investment Deal Analysis Calculator</h1>
     <div id="costAssumptions">
       <h2>Cost Assumptions</h2>
-      <p>Purchase Price: <input class="userInput money" id="price" type="number" step="1"></p>
+      <p>Purchase Price: <input class="userInput money" id="price" type="text"></p>
       <p>Improvements: <input class="userInput money" id="improvements" type="text"></p>
       <p>Closing Costs: <input class="userInput money" id="closingCosts" type="text"></p>
       <h3>Total Cost = <input class="calculation money" id="totalCost" type="text"></h3>
@@ -69,28 +72,27 @@
       <h2>Cash Flow</h2>
       <p>NOI (cash available): <input class="calculation money" id="cashAvailable" type="text"></p>
       <p>Mortgage: <input class="calculation money" id="mtg" type="text"></p>
-      <h3>Total Cash Flow = <input class="calculation" id="totalCashFlow" type="text"></h3>
-      <h3>Cash ROI = <input class="calculation" id="cashROI" type="text"></h3>
+      <h3>Total Cash Flow = <input class="calculation money" id="totalCashFlow" type="text"></h3>
+      <h3>Cash ROI = <input class="calculation fixed" id="cashROI" type="text"></h3>
       <p>Equity Accrued: <input class="userInput money" id="equity" type="text"></p>
       <p>Appreciation: <input class="userInput money" id="appreciation" type="text"></p>
-      <h3>Total Return = <input class="calculation money" id="totalReturn" type="text"></h3>
-      <h3>Total ROI = <input class="calculation money" id="totalROI" type="text"></h3>
+      <h3>Total Return = <input class="calculation fixed" id="totalReturn" type="text"></h3>
+      <h3>Total ROI = <input class="calculation fixed" id="totalROI" type="text"></h3>
     </div>
 
     <div id="keyValues">
       <h2>Key Values</h2>
       <p>Cost/Unit: <input class="calculation money" id="costPerUnit" type="text"></p>
-      <p>Capitalization Rate:<input class="calculation" id="capRate" type="text"></p>
-      <p>GRM: <input class="calculation" id="GRM" type="text"></p>
-      <p>Cash ROI: <input class="calculation" id="cashROI2" type="text"></p>
-      <p>Total ROI: <input class="calculation" id="totalROI2" type="text"></p>
-      <p>DSCR: <input class="calculation" id="DSCR" type="text"></p>
+      <p>Capitalization Rate:<input class="calculation fixed" id="capRate" type="text"></p>
+      <p>GRM: <input class="calculation fixed" id="GRM" type="text"></p>
+      <p>Cash ROI: <input class="calculation fixed" id="cashROI2" type="text"></p>
+      <p>Total ROI: <input class="calculation fixed" id="totalROI2" type="text"></p>
+      <p>DSCR: <input class="calculation fixed" id="DSCR" type="text"></p>
       <p>Annual Cash Flow: <input class="calculation money" id="annualCashFlow" type="text"></p>
     </div>
 
   </div>
 
-  <script src="node_modules/autonumeric/dist/autoNumeric.min.js" charset="utf-8"></script>
   <script src="app.js"></script>
 </body>
 
