@@ -165,10 +165,10 @@ function calcCashFlow() {
   document.getElementById('annualCashFlow').value = totalCashFlowVar;
 }
 
-function hideNaNs() {
+function hideNaNs(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].value.includes == "NaN" || inputs[i].value == "$0.00") {
-      inputs[i].style.display = "none";
+    if (inputs[i].value.includes("NaN") || inputs[i].value == "$0.00" || inputs[i].value == "0" || inputs[i].value == "Infinity") {
+      inputs[i].value = "";
     }
   }
 }
@@ -181,21 +181,20 @@ function toFixed(inputs) {
   }
 }
 
-function inputsIntoNumbers (inputs) {
+function inputsIntoNumbers(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if(inputs[i].value.includes("$")) {
+    if (inputs[i].value.includes("$")) {
       inputs[i].value = accounting.unformat(inputs[i].value);
-    } else {
-      inputs[i].value = inputs[i].value.replace(/\D/g, "");
     }
-    // let array = inputs[i].value.split("");
-    // let dollars = array.splice(0, array.length - 3).join("");
-    // let cents = array.splice(-3, 3).join("");
-    // dollars = dollars.replace(/\D/g,'');
-    // inputs[i].value = dollars + cents;
   }
-  // format = "numbers";
+  // manual unformat
+  // let array = inputs[i].value.split("");
+  // let dollars = array.splice(0, array.length - 3).join("");
+  // let cents = array.splice(-3, 3).join("");
+  // dollars = dollars.replace(/\D/g,'');
+  // inputs[i].value = dollars + cents;
 }
+
 
 function numbersIntoMoney(inputs) {
   for (let i = 0; i < inputs.length; i++) {
@@ -203,7 +202,6 @@ function numbersIntoMoney(inputs) {
       inputs[i].value = accounting.formatMoney(Number(inputs[i].value));
       // inputs[i].value = Number(inputs[i].value).toLocaleString("en-US", options);
     }
-    // format = "money";
   }
 }
 
@@ -222,18 +220,14 @@ container.addEventListener('keyup', function(event) {
   if (event.key !== "Enter") {
     setValues();
     sumTotalCost();
+    hideNaNs(allInputs);
   }
 });
-//
+
 container.addEventListener('keyup', function(event) {
-  if(event.key == "Enter") {
+  if (event.key == "Enter") {
     numbersIntoMoney(moneyInputs);
     // hideNaNs(allInputs);
     toFixed(fixedInputs);
   }
 })
-
-
-// function calculate () {
-//   inputsIntoNumbers(moneyInputs);
-// }
