@@ -47,14 +47,11 @@ const mtg = document.getElementById("mtg");
 const cashFlow = document.getElementById("cashFlow");
 const mortgageYrs = document.getElementById("mortgageYrs");
 const container = document.querySelector(".container");
+const resetButton = document.getElementById("reset");
 const allInputs = Array.from(document.getElementsByTagName('input'));
 const moneyInputs = Array.from(document.querySelectorAll('.money'));
 const calculationInputs = Array.from(document.getElementsByClassName("calculation"));
 const fixedInputs = Array.from(document.getElementsByClassName("fixed"));
-const options = {
-  style: "currency",
-  currency: "USD"
-};
 
 // functions
 
@@ -152,7 +149,6 @@ function calcTotalExpenses() {
   document.getElementById('cashROI').value = (totalRentPerMonth / cashOutlayVar);
   document.getElementById('capRate').value = ((netOI / totalCost) * 100);
   document.getElementById('cashAvailable').value = netOI;
-  calcCashFlow();
 }
 
 function calcCashFlow() {
@@ -221,13 +217,47 @@ container.addEventListener('keyup', function(event) {
     setValues();
     sumTotalCost();
     hideNaNs(allInputs);
+    setInputValues();
   }
 });
 
 container.addEventListener('keyup', function(event) {
   if (event.key == "Enter") {
     numbersIntoMoney(moneyInputs);
-    // hideNaNs(allInputs);
     toFixed(fixedInputs);
   }
 })
+
+resetButton.addEventListener('click', function() {
+  localStorage.clear();
+  allInputs.forEach(function(input) {
+    input.value = "";
+  })
+})
+
+// localStorage
+
+let allInputValues = [];
+let data = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+function setInputValues() {
+  allInputValues = [];
+  for (let i = 0; i < allInputs.length; i++) {
+    allInputValues.push(allInputs[i].value);
+    localStorage.setItem("items", JSON.stringify(allInputValues));
+  }
+}
+
+function getLocalStorageData() {
+  for (let i = 0; i < data.length; i++) {
+    allInputs[i].value = data[i];
+  }
+  numbersIntoMoney(moneyInputs);
+  toFixed(fixedInputs);
+}
+
+(function populateInputs() {
+  if(localStorage.getItem("items")) {
+    getLocalStorageData();
+  }
+})();
