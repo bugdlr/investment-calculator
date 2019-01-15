@@ -34,6 +34,18 @@ let totalROIVar;
 let grm;
 let annualCashFlow;
 
+// let costAssumptionsCardShowing = true;
+// let financingAssumptionsCardShowing = false;
+// let revenueAssumptionsCardShowing = false;
+// let revenuesCardShowing = false;
+// let expensesCardShowing = false;
+// let cashflowCardShowing = false;
+// let keyValuesCardShowing = false;
+// let allCardsShowing = false;
+
+let cardShowing = [true, false, false, false, false, false, false];
+let allCardsShowing = false;
+
 const costAssumptions = document.getElementById("costAssumptions");
 const financingAssumptions = document.getElementById("financingAssumptions");
 const revenueAssumptions = document.getElementById("revenueAssumptions");
@@ -209,11 +221,46 @@ function numbersIntoMoney(inputs) {
 function showSummary() {
   for (let i = 0; i < cards.length; i++) {
     if (nextButton.innerHTML == "Show Summary") {
-    cards[i].classList.remove("hide");
+      cards[i].classList.remove("hide");
     }
   }
 }
 
+function goToPreviousCard() {
+  for (let i = cards.length - 1; i >= 1; i--) {
+    if (!(cards[i].classList.contains("hide"))) {
+      cards[i].classList.add("hide");
+      cards[i - 1].classList.remove("hide");
+      return;
+    }
+  }
+}
+
+function goToNextCard() {
+  for (let i = 0; i < cards.length - 1; i++) {
+    if (!(cards[i].classList.contains("hide"))) {
+      cards[i].classList.add("hide");
+      cards[i + 1].classList.remove("hide");
+      return;
+    }
+  }
+}
+
+
+function whichCardIsShowing() {
+  for (let i = 0; i < cards.length; i++) {
+    if(cards[i].classList.contains("hide")) {
+      cardShowing[i] = false;
+    } else {
+    cardShowing[i] = true;
+    console.log(cardShowing.indexOf(true));
+    }
+  } if (cardShowing.indexOf(false) == "-1") {
+    allCardsShowing = true;
+  } else {
+    allCardsShowing = false;
+  } console.log(allCardsShowing);
+}
 
 // ***********EVENT LISTENERS*********** //
 container.addEventListener('keyup', function(event) {
@@ -246,35 +293,22 @@ resetButton.addEventListener('click', function() {
 })
 
 nextButton.addEventListener('click', function() {
-  for (let i = 0; i < cards.length - 1; i++) {
-    if (!(cards[i].classList.contains("hide"))) {
-      cards[i].classList.add("hide");
-      cards[i + 1].classList.remove("hide");
-      prevButton.classList.remove("hide");
-      isKeyValuesCard();
-      return;
-    }
-  }
+  goToNextCard();
+  prevButton.classList.remove("hide");
+  isKeyValuesCard();
 })
 
-prevButton.addEventListener("click", function() {
-  if (!(financingAssumptionsCard.classList.contains("hide"))) {
-    prevButton.classList.add("hide");
-  }
 
-  if (!(keyValuesCard.classList.contains("hide"))) {
+prevButton.addEventListener("click", function() {
+  whichCardIsShowing();
+  if (cardShowing.indexOf(true) == 1) {
+    prevButton.classList.add("hide");
+  } else if (cardShowing.indexOf(true) == 6) {
     summaryButton.classList.add("hide");
     nextButton.classList.remove("hide");
-  }
-
-  isSummary();
-
-  for (let i = cards.length; i < 0; i--) {
-    if (!(cards[i].classList.contains("hide"))) {
-      cards[i - 1].classList.add("hide");
-      return;
-    }
-  }
+  } else if (allCardsShowing) {
+    isSummary();
+  } goToPreviousCard();
 })
 
 
@@ -291,43 +325,43 @@ summaryButton.addEventListener('click', function() {
 
 function isCostAssumptionsCard() {
   if (!(costAssumptionsCard.classList.contains("hide"))) {
-    sumTotalCost();
-    cashOutlay();
+    prevButton.classList.add("hide");
+    // sumTotalCost();
+    // cashOutlay();
   }
 }
 
 function isFinancingAssumptionsCard() {
   if (!(financingAssumptionsCard.classList.contains("hide"))) {
-    prevButton.classList.remove("hide");
-    cashOutlay();
-    grossRev();
+    // cashOutlay();
+    // grossRev();
   }
 }
 
 function isRevenueAssumptionsCard() {
   if (!(revenueAssumptionsCard.classList.contains("hide"))) {
-    grossRev();
-    calcGrossIncome();
+    // grossRev();
+    // calcGrossIncome();
   }
 }
 
 function isRevenuesCard() {
   if (!(revenuesCard.classList.contains("hide"))) {
-    calcGrossIncome();
-    calcTotalExpenses();
+    // calcGrossIncome();
+    // calcTotalExpenses();
   }
 }
 
 function isExpensesCard() {
   if (!(expensesCard.classList.contains("hide"))) {
-    calcTotalExpenses();
-    calcCashFlow();
+    // calcTotalExpenses();
+    // calcCashFlow();
   }
 }
 
 function isCashflowCard() {
   if (!(cashflowCard.classList.contains("hide"))) {
-    calcCashFlow();
+    // calcCashFlow();
     summaryButton.classList.add("hide");
   }
 }
@@ -341,40 +375,42 @@ function isKeyValuesCard() {
 }
 
 function isSummary() {
-  for (let i = 0; i < cards.length; i++) {
-    if (keyValuesCard.classList.contains("hide")) {
-      cards[i].classList.add("hide");
-      keyValuesCard.classList.remove("hide");
-    }
-  }
+    // hide all the cards except key values
+  for (let i = 0; i < cards.length - 1; i++) {
+    cards[i].classList.add("hide");
+  } prevButton.classList.remove("hide");
+    summaryButton.classList.remove("hide");
 }
 
 
+// TO DO
+// fix key values being hidden when hitting previous from the summary page
+// remove show summary button and show next button when hitting previous from the key values page(which is currently not showing for some reason)
 
 
 // ***********LOCAL STORAGE*********** //
 
-  let allInputValues = [];
-  let data = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+let allInputValues = [];
+let data = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
-  function setInputValues() {
-    allInputValues = [];
-    for (let i = 0; i < allInputs.length; i++) {
-      allInputValues.push(allInputs[i].value);
-      localStorage.setItem("items", JSON.stringify(allInputValues));
-    }
+function setInputValues() {
+  allInputValues = [];
+  for (let i = 0; i < allInputs.length; i++) {
+    allInputValues.push(allInputs[i].value);
+    localStorage.setItem("items", JSON.stringify(allInputValues));
   }
+}
 
-  function getLocalStorageData() {
-    for (let i = 0; i < data.length; i++) {
-      allInputs[i].value = data[i];
-    }
-    numbersIntoMoney(moneyInputs);
-    toFixed(fixedInputs);
+function getLocalStorageData() {
+  for (let i = 0; i < data.length; i++) {
+    allInputs[i].value = data[i];
   }
+  numbersIntoMoney(moneyInputs);
+  toFixed(fixedInputs);
+}
 
-  (function populateInputs() {
-    if (localStorage.getItem("items")) {
-      getLocalStorageData();
-    }
-  })();
+(function populateInputs() {
+  if (localStorage.getItem("items")) {
+    getLocalStorageData();
+  }
+})();
