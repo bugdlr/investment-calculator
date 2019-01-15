@@ -23,7 +23,7 @@
       <h3>Total Cost = <input class="calculation money" id="totalCost" type="text"></h3>
     </div>
 
-    <div class="card" id="financingAssumptions">
+    <div class="card hide" id="financingAssumptions">
       <h2>Financing Assumptions</h2>
       <p>Downpayment (%): <input class="userInput" id="downpayment" type="text"></p>
       <p>Finance Amount: <input class="calculation money" id="FinAmt" type="text"></p>
@@ -34,7 +34,7 @@
       <h3>Cash Outlay = <input class="calculation money" id="cashOutlay" type="text"></h3>
     </div>
 
-    <div class="card" id="revenueAssumptions">
+    <div class="card hide" id="revenueAssumptions">
       <h2>Revenue Assumptions</h2>
       <p># of Units: <input class="userInput" id="numOfUnits" type="text"></p>
       <p>Total Rent/Month: <input class="userInput money" id="totalRentPerMonth" type="text"></p>
@@ -44,7 +44,7 @@
       <h3>Gross Revenue/Year = <input class="calculation money" id="grossRevPerYear" type="text"></h3>
     </div>
 
-    <div class="card" id="revenues">
+    <div class="card hide" id="revenues">
       <h2>Revenues</h2>
       <p>Rental Income: <input class="calculation money" id="rentalIncome" type="text"></p>
       <p>Vacancy Cost: <input class="calculation money" id="vacCost" type="text"></p>
@@ -53,7 +53,7 @@
       <h3>Gross Income = <input class="calculation money" id="grossIncomeInput" type="text"></h3>
     </div>
 
-    <div class="card" id="expenses">
+    <div class="card hide" id="expenses">
       <h2>Expenses</h2>
       <p>Property Taxes (Annual): <input class="userInput money" id="propertyTaxes" type="text"></p>
       <p>Insurance (Annual): <input class="userInput money" id="insurance" type="text"></p>
@@ -68,7 +68,7 @@
       <h3 id="NOI">Net Operating Income (NOI) = <input class="calculation money" id="netOI" type="text"></p></h3>
     </div>
 
-    <div class="card" id="cashFlow">
+    <div class="card hide" id="cashFlow">
       <h2>Cash Flow</h2>
       <p>NOI (cash available): <input class="calculation money" id="cashAvailable" type="text"></p>
       <p>Mortgage: <input class="calculation money" id="mtg" type="text"></p>
@@ -80,7 +80,7 @@
       <h3>Total ROI = <input class="calculation fixed" id="totalROI" type="text"></h3>
     </div>
 
-    <div class="card" id="keyValues">
+    <div class="card hide" id="keyValues">
       <h2>Key Values</h2>
       <p>Cost/Unit: <input class="calculation money" id="costPerUnit" type="text"></p>
       <p>Capitalization Rate:<input class="calculation fixed" id="capRate" type="text"></p>
@@ -91,8 +91,13 @@
       <p>Annual Cash Flow: <input class="calculation money" id="annualCashFlow" type="text"></p>
     </div>
 
+    <div class="buttons">
+      <button type="button" name="button" id="reset">Reset</button>
+      <button type="button" name="button" id="previous" class ="hide">Previous Section</button>
+      <button type="button" name="button" id="next">Next Section</button>
+      <button type="button" name="button" id="summary" class="hide">Show Summary</button>
+    </div>
   </div>
-  <button type="button" name="button" id="reset">Reset</button>
 
   <script src="app.js"></script>
 </body>

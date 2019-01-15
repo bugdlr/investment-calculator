@@ -1,6 +1,4 @@
-// (function() {
-
-// variables
+// ***********VARIABLES*********** //
 let price;
 let improvements;
 let closingCosts;
@@ -35,8 +33,6 @@ let totalReturnVar;
 let totalROIVar;
 let grm;
 let annualCashFlow;
-let inputs = [];
-let format = "numbers";
 
 const costAssumptions = document.getElementById("costAssumptions");
 const financingAssumptions = document.getElementById("financingAssumptions");
@@ -47,13 +43,28 @@ const mtg = document.getElementById("mtg");
 const cashFlow = document.getElementById("cashFlow");
 const mortgageYrs = document.getElementById("mortgageYrs");
 const container = document.querySelector(".container");
-const resetButton = document.getElementById("reset");
+
 const allInputs = Array.from(document.getElementsByTagName('input'));
 const moneyInputs = Array.from(document.querySelectorAll('.money'));
 const calculationInputs = Array.from(document.getElementsByClassName("calculation"));
 const fixedInputs = Array.from(document.getElementsByClassName("fixed"));
+const cards = Array.from(document.getElementsByClassName("card"));
 
-// functions
+const costAssumptionsCard = document.getElementById("costAssumptions");
+const financingAssumptionsCard = document.getElementById("financingAssumptions");
+const revenueAssumptionsCard = document.getElementById("revenueAssumptions");
+const revenuesCard = document.getElementById("revenues");
+const expensesCard = document.getElementById("expenses");
+const cashflowCard = document.getElementById("cashFlow");
+const keyValuesCard = document.getElementById("keyValues");
+
+const resetButton = document.getElementById("reset");
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("previous");
+const summaryButton = document.getElementById("summary");
+
+
+// ***********FUNCTIONS*********** //
 
 function setValues() {
   inputsIntoNumbers(allInputs);
@@ -102,10 +113,11 @@ function setValues() {
   annualCashFlow = Number(document.getElementById("annualCashFlow").value);
 }
 
+// ***********CALCULATION FUNCTIONS*********** //
+
 function sumTotalCost() {
   result = price + improvements + closingCosts;
   document.getElementById('totalCost').value = result;
-  cashOutlay();
 }
 
 function cashOutlay() {
@@ -119,7 +131,6 @@ function cashOutlay() {
   let numerator = rate * ((1 + rate) ** n);
   let denominator = ((1 + rate) ** n) - 1;
   document.getElementById('mortgagePayment').value = financeAmount * (numerator / denominator);
-  grossRev();
 }
 
 function grossRev() {
@@ -130,14 +141,12 @@ function grossRev() {
   document.getElementById('otherIncome').value = (otherRevPerMonth * 12);
   document.getElementById('costPerUnit').value = totalCost / numOfUnits;
   document.getElementById('GRM').value = totalCost / grossRevPerYear;
-  calcGrossIncome();
 }
 
 function calcGrossIncome() {
   document.getElementById('vacCost').value = (vacancyRate / 100) * (totalRentPerMonth * 12);
   document.getElementById('netRentalIncome').value = (totalRentPerMonth * 12) - vacancyCost;
   document.getElementById('grossIncomeInput').value = (netRentalIncome + otherIncome);
-  calcTotalExpenses();
 }
 
 function calcTotalExpenses() {
@@ -161,6 +170,9 @@ function calcCashFlow() {
   document.getElementById('annualCashFlow').value = totalCashFlowVar;
 }
 
+
+// ***********FORMATTING FUNCTIONS*********** //
+
 function hideNaNs(inputs) {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value.includes("NaN") || inputs[i].value == "$0.00" || inputs[i].value == "0" || inputs[i].value == "Infinity") {
@@ -183,14 +195,7 @@ function inputsIntoNumbers(inputs) {
       inputs[i].value = accounting.unformat(inputs[i].value);
     }
   }
-  // manual unformat
-  // let array = inputs[i].value.split("");
-  // let dollars = array.splice(0, array.length - 3).join("");
-  // let cents = array.splice(-3, 3).join("");
-  // dollars = dollars.replace(/\D/g,'');
-  // inputs[i].value = dollars + cents;
 }
-
 
 function numbersIntoMoney(inputs) {
   for (let i = 0; i < inputs.length; i++) {
@@ -201,25 +206,30 @@ function numbersIntoMoney(inputs) {
   }
 }
 
-// })();
+function showSummary() {
+  for (let i = 0; i < cards.length; i++) {
+    if (nextButton.innerHTML == "Show Summary") {
+    cards[i].classList.remove("hide");
+    }
+  }
+}
 
 
-/**
- * TO DO
-    local storage
-    reset button
- */
-
-
-// event listener
+// ***********EVENT LISTENERS*********** //
 container.addEventListener('keyup', function(event) {
   if (event.key !== "Enter") {
     setValues();
-    sumTotalCost();
+    isCostAssumptionsCard();
+    isFinancingAssumptionsCard();
+    isRevenueAssumptionsCard();
+    isRevenuesCard();
+    isExpensesCard();
+    isCashflowCard();
+    isKeyValuesCard();
     hideNaNs(allInputs);
     setInputValues();
   }
-});
+})
 
 container.addEventListener('keyup', function(event) {
   if (event.key == "Enter") {
@@ -235,29 +245,136 @@ resetButton.addEventListener('click', function() {
   })
 })
 
-// localStorage
+nextButton.addEventListener('click', function() {
+  for (let i = 0; i < cards.length - 1; i++) {
+    if (!(cards[i].classList.contains("hide"))) {
+      cards[i].classList.add("hide");
+      cards[i + 1].classList.remove("hide");
+      prevButton.classList.remove("hide");
+      isKeyValuesCard();
+      return;
+    }
+  }
+})
 
-let allInputValues = [];
-let data = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+prevButton.addEventListener("click", function() {
+  if (!(financingAssumptionsCard.classList.contains("hide"))) {
+    prevButton.classList.add("hide");
+  }
 
-function setInputValues() {
-  allInputValues = [];
-  for (let i = 0; i < allInputs.length; i++) {
-    allInputValues.push(allInputs[i].value);
-    localStorage.setItem("items", JSON.stringify(allInputValues));
+  if (!(keyValuesCard.classList.contains("hide"))) {
+    summaryButton.classList.add("hide");
+    nextButton.classList.remove("hide");
+  }
+
+  isSummary();
+
+  for (let i = cards.length; i < 0; i--) {
+    if (!(cards[i].classList.contains("hide"))) {
+      cards[i - 1].classList.add("hide");
+      return;
+    }
+  }
+})
+
+
+summaryButton.addEventListener('click', function() {
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].classList.remove("hide");
+    summaryButton.classList.add("hide");
+  }
+})
+
+
+
+// ***********CARD FUNCTIONS*********** //
+
+function isCostAssumptionsCard() {
+  if (!(costAssumptionsCard.classList.contains("hide"))) {
+    sumTotalCost();
+    cashOutlay();
   }
 }
 
-function getLocalStorageData() {
-  for (let i = 0; i < data.length; i++) {
-    allInputs[i].value = data[i];
+function isFinancingAssumptionsCard() {
+  if (!(financingAssumptionsCard.classList.contains("hide"))) {
+    prevButton.classList.remove("hide");
+    cashOutlay();
+    grossRev();
   }
-  numbersIntoMoney(moneyInputs);
-  toFixed(fixedInputs);
 }
 
-(function populateInputs() {
-  if(localStorage.getItem("items")) {
-    getLocalStorageData();
+function isRevenueAssumptionsCard() {
+  if (!(revenueAssumptionsCard.classList.contains("hide"))) {
+    grossRev();
+    calcGrossIncome();
   }
-})();
+}
+
+function isRevenuesCard() {
+  if (!(revenuesCard.classList.contains("hide"))) {
+    calcGrossIncome();
+    calcTotalExpenses();
+  }
+}
+
+function isExpensesCard() {
+  if (!(expensesCard.classList.contains("hide"))) {
+    calcTotalExpenses();
+    calcCashFlow();
+  }
+}
+
+function isCashflowCard() {
+  if (!(cashflowCard.classList.contains("hide"))) {
+    calcCashFlow();
+    summaryButton.classList.add("hide");
+  }
+}
+
+function isKeyValuesCard() {
+  if (!(keyValuesCard.classList.contains("hide"))) {
+    nextButton.classList.add("hide");
+    prevButton.classList.remove("hide");
+    summaryButton.classList.remove("hide");
+  }
+}
+
+function isSummary() {
+  for (let i = 0; i < cards.length; i++) {
+    if (keyValuesCard.classList.contains("hide")) {
+      cards[i].classList.add("hide");
+      keyValuesCard.classList.remove("hide");
+    }
+  }
+}
+
+
+
+
+// ***********LOCAL STORAGE*********** //
+
+  let allInputValues = [];
+  let data = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+  function setInputValues() {
+    allInputValues = [];
+    for (let i = 0; i < allInputs.length; i++) {
+      allInputValues.push(allInputs[i].value);
+      localStorage.setItem("items", JSON.stringify(allInputValues));
+    }
+  }
+
+  function getLocalStorageData() {
+    for (let i = 0; i < data.length; i++) {
+      allInputs[i].value = data[i];
+    }
+    numbersIntoMoney(moneyInputs);
+    toFixed(fixedInputs);
+  }
+
+  (function populateInputs() {
+    if (localStorage.getItem("items")) {
+      getLocalStorageData();
+    }
+  })();
