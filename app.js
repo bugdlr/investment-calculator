@@ -303,12 +303,16 @@ prevButton.addEventListener("click", function() {
   whichCardIsShowing();
   if (cardShowing.indexOf(true) == 1) {
     prevButton.classList.add("hide");
+    goToPreviousCard();
   } else if (cardShowing.indexOf(true) == 6) {
     summaryButton.classList.add("hide");
     nextButton.classList.remove("hide");
+    goToPreviousCard();
   } else if (allCardsShowing) {
     isSummary();
-  } goToPreviousCard();
+  } else {
+    goToPreviousCard();
+  }
 })
 
 
