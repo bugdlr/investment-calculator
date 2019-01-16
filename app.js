@@ -34,15 +34,6 @@ let totalROIVar;
 let grm;
 let annualCashFlow;
 
-// let costAssumptionsCardShowing = true;
-// let financingAssumptionsCardShowing = false;
-// let revenueAssumptionsCardShowing = false;
-// let revenuesCardShowing = false;
-// let expensesCardShowing = false;
-// let cashflowCardShowing = false;
-// let keyValuesCardShowing = false;
-// let allCardsShowing = false;
-
 let cardShowing = [true, false, false, false, false, false, false];
 let allCardsShowing = false;
 
@@ -262,6 +253,16 @@ function whichCardIsShowing() {
   } console.log(allCardsShowing);
 }
 
+
+function isSummary() {
+    // hide all the cards except key values
+  for (let i = 0; i < cards.length - 1; i++) {
+    cards[i].classList.add("hide");
+  } prevButton.classList.remove("hide");
+    summaryButton.classList.remove("hide");
+}
+
+
 // ***********EVENT LISTENERS*********** //
 container.addEventListener('keyup', function(event) {
   if (event.key !== "Enter") {
@@ -295,7 +296,12 @@ resetButton.addEventListener('click', function() {
 nextButton.addEventListener('click', function() {
   goToNextCard();
   prevButton.classList.remove("hide");
-  isKeyValuesCard();
+  whichCardIsShowing();
+  if (cardShowing.indexOf(true) == 6) {
+    nextButton.classList.add("hide");
+    prevButton.classList.remove("hide");
+    summaryButton.classList.remove("hide");
+  }
 })
 
 
@@ -323,73 +329,6 @@ summaryButton.addEventListener('click', function() {
   }
 })
 
-
-
-// ***********CARD FUNCTIONS*********** //
-
-function isCostAssumptionsCard() {
-  if (!(costAssumptionsCard.classList.contains("hide"))) {
-    prevButton.classList.add("hide");
-    // sumTotalCost();
-    // cashOutlay();
-  }
-}
-
-function isFinancingAssumptionsCard() {
-  if (!(financingAssumptionsCard.classList.contains("hide"))) {
-    // cashOutlay();
-    // grossRev();
-  }
-}
-
-function isRevenueAssumptionsCard() {
-  if (!(revenueAssumptionsCard.classList.contains("hide"))) {
-    // grossRev();
-    // calcGrossIncome();
-  }
-}
-
-function isRevenuesCard() {
-  if (!(revenuesCard.classList.contains("hide"))) {
-    // calcGrossIncome();
-    // calcTotalExpenses();
-  }
-}
-
-function isExpensesCard() {
-  if (!(expensesCard.classList.contains("hide"))) {
-    // calcTotalExpenses();
-    // calcCashFlow();
-  }
-}
-
-function isCashflowCard() {
-  if (!(cashflowCard.classList.contains("hide"))) {
-    // calcCashFlow();
-    summaryButton.classList.add("hide");
-  }
-}
-
-function isKeyValuesCard() {
-  if (!(keyValuesCard.classList.contains("hide"))) {
-    nextButton.classList.add("hide");
-    prevButton.classList.remove("hide");
-    summaryButton.classList.remove("hide");
-  }
-}
-
-function isSummary() {
-    // hide all the cards except key values
-  for (let i = 0; i < cards.length - 1; i++) {
-    cards[i].classList.add("hide");
-  } prevButton.classList.remove("hide");
-    summaryButton.classList.remove("hide");
-}
-
-
-// TO DO
-// fix key values being hidden when hitting previous from the summary page
-// remove show summary button and show next button when hitting previous from the key values page(which is currently not showing for some reason)
 
 
 // ***********LOCAL STORAGE*********** //
