@@ -124,6 +124,8 @@ function sumTotalCost() {
 }
 
 function cashOutlay() {
+  setValues();
+  inputsIntoNumbers(allInputs);
   document.getElementById('dwnpmtAmt').value = (downpaymentPercent / 100) * price;
   document.getElementById('FinAmt').value = price - downpayment;
   total = improvements + closingCosts + downpayment;
@@ -137,6 +139,8 @@ function cashOutlay() {
 }
 
 function grossRev() {
+  setValues();
+  inputsIntoNumbers(allInputs);
   totalRev = totalRentPerMonth + otherRevPerMonth;
   document.getElementById('grossRevPerMonth').value = totalRev;
   document.getElementById('grossRevPerYear').value = (totalRev * 12);
@@ -147,12 +151,16 @@ function grossRev() {
 }
 
 function calcGrossIncome() {
+  setValues();
+  inputsIntoNumbers(allInputs);
   document.getElementById('vacCost').value = (vacancyRate / 100) * (totalRentPerMonth * 12);
   document.getElementById('netRentalIncome').value = (totalRentPerMonth * 12) - vacancyCost;
   document.getElementById('grossIncomeInput').value = (netRentalIncome + otherIncome);
 }
 
 function calcTotalExpenses() {
+  setValues();
+  inputsIntoNumbers(allInputs);
   propMgmCalc = (propertyMgmt / 100) * netRentalIncome;
   totalExpensesVar = (propertyTaxes + insurance + propMgmCalc + mtRepairs + advertising + utilities + other1 + (other2 * 12) + (other3 * 12));
   document.getElementById('totalExpenses').value = totalExpensesVar;
@@ -164,6 +172,8 @@ function calcTotalExpenses() {
 }
 
 function calcCashFlow() {
+  setValues();
+  inputsIntoNumbers(allInputs);
   document.getElementById('cashROI').value = ((totalCashFlowVar / cashOutlayVar) * 100);
   document.getElementById('totalReturn').value = totalCashFlowVar + equity + appreciation;
   document.getElementById('totalROI').value = ((totalReturnVar / cashOutlayVar) * 100);
@@ -196,6 +206,8 @@ function inputsIntoNumbers(inputs) {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value.includes("$")) {
       inputs[i].value = accounting.unformat(inputs[i].value);
+    } if (inputs[i].value.includes("%")) {
+      inputs[i].value = Number(inputs[i].value.slice(0, -1));
     }
   }
 }
@@ -244,13 +256,12 @@ function whichCardIsShowing() {
       cardShowing[i] = false;
     } else {
     cardShowing[i] = true;
-    console.log(cardShowing.indexOf(true));
     }
   } if (cardShowing.indexOf(false) == "-1") {
     allCardsShowing = true;
   } else {
     allCardsShowing = false;
-  } console.log(allCardsShowing);
+  } 
 }
 
 
@@ -267,13 +278,12 @@ function isSummary() {
 container.addEventListener('keyup', function(event) {
   if (event.key !== "Enter") {
     setValues();
-    isCostAssumptionsCard();
-    isFinancingAssumptionsCard();
-    isRevenueAssumptionsCard();
-    isRevenuesCard();
-    isExpensesCard();
-    isCashflowCard();
-    isKeyValuesCard();
+    sumTotalCost();
+    cashOutlay();
+    grossRev();
+    calcGrossIncome();
+    calcTotalExpenses();
+    calcCashFlow();
     hideNaNs(allInputs);
     setInputValues();
   }
@@ -281,8 +291,27 @@ container.addEventListener('keyup', function(event) {
 
 container.addEventListener('keyup', function(event) {
   if (event.key == "Enter") {
+    inputsIntoNumbers(allInputs);
     numbersIntoMoney(moneyInputs);
     toFixed(fixedInputs);
+    hideNaNs(allInputs);
+  }
+})
+
+container.addEventListener('keyup', function(event) {
+  if (event.key !== "Enter") {
+    whichCardIsShowing();
+    if (allCardsShowing) {
+      setValues();
+      sumTotalCost();
+      cashOutlay();
+      grossRev();
+      calcGrossIncome();
+      calcTotalExpenses();
+      calcCashFlow();
+      hideNaNs(allInputs);
+      setInputValues();
+    }
   }
 })
 
@@ -302,6 +331,10 @@ nextButton.addEventListener('click', function() {
     prevButton.classList.remove("hide");
     summaryButton.classList.remove("hide");
   }
+    inputsIntoNumbers(allInputs);
+    numbersIntoMoney(moneyInputs);
+    toFixed(fixedInputs);
+    hideNaNs(allInputs);
 })
 
 
