@@ -33,7 +33,7 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: start;
   vertical-align: top;
   text-align: center;
@@ -59,7 +59,7 @@ h1 {
 
 h2 {
   color: #fa7b20;
-  margin-top: 0;
+  margin: 0 auto;
 }
 
 h3 {
@@ -104,6 +104,11 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+#reset {
+  display: block;
+  margin: 0 auto;
+}
+
 button {
   font-size: 17px;
   padding: 10px;
@@ -117,4 +122,17 @@ button {
 
 button:focus {
   outline: none;
+}
+
+@media (max-width: 438px) {
+  .container {
+    width: 100%;
+    padding: 10px 0;
+  }
+  .card {
+    align-items: start;
+  }
+  h3, p {
+    margin: 10px 3px;
+  }
 }
