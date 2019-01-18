@@ -17,78 +17,230 @@
   <div class="container">
     <div class="card" id="costAssumptions">
       <h2>Cost Assumptions</h2>
-      <p>Purchase Price: <input class="userInput money" id="price" type="text"></p>
-      <p>Improvements: <input class="userInput money" id="improvements" type="text"></p>
-      <p>Closing Costs: <input class="userInput money" id="closingCosts" type="text"></p>
-      <h3>Total Cost = <input class="calculation money" id="totalCost" type="text"></h3>
+      <div class="field-wrap">
+        <label for="price">Purchase Price:</label>
+        <input class="userInput money" id="price" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="improvements">Improvements:</label>
+        <input class="userInput money" id="improvements" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="closingCosts">Closing Costs:</label>
+        <input class="userInput money" id="closingCosts" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="totalCost" class="total-label">Total Cost =</label>
+        <input class="calculation money" id="totalCost" type="text">
+      </div>
     </div>
 
     <div class="card hide" id="financingAssumptions">
       <h2>Financing Assumptions</h2>
-      <p>Downpayment (%): <input class="userInput" id="downpayment" type="text"></p>
-      <p>Finance Amount: <input class="calculation money" id="FinAmt" type="text"></p>
-      <p>Downpayment Amount: <input class="calculation money" id="dwnpmtAmt" type="text"></p>
-      <p>Interest Rate (%): <input class="userInput" id="interestRate" type="text"></p>
-      <p>Mortgage (Years): <input class="userInput" id="mortgageYrs" type="text"></p>
-      <p>Mortgage Payment: <input class="calculation money" id="mortgagePayment" type="text"></p>
-      <h3>Cash Outlay = <input class="calculation money" id="cashOutlay" type="text"></h3>
+      <div class="field-wrap">
+          <label for="downpayment">Downpayment (%):</label>
+          <input class="userInput" id="downpayment" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="FinAmt">Finance Amount:</label>
+          <input class="calculation money" id="FinAmt" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="dwnpmtAmt">Downpayment Amount:</label>
+          <input class="calculation money" id="dwnpmtAmt" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="interestRate">Interest Rate (%):</label>
+          <input class="userInput" id="interestRate" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="mortgageYrs">Mortgage (Years):</label>
+          <input class="userInput" id="mortgageYrs" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="mortgagePayment">Mortgage Payment:</label>
+          <input class="calculation money" id="mortgagePayment" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="cashOutlay" class="total-label">Finance Amount:</label>
+          <input class="calculation money" id="cashOutlay" type="text">
+      </div>
     </div>
 
     <div class="card hide" id="revenueAssumptions">
       <h2>Revenue Assumptions</h2>
-      <p># of Units: <input class="userInput" id="numOfUnits" type="text"></p>
-      <p>Total Rent/Month: <input class="userInput money" id="totalRentPerMonth" type="text"></p>
-      <p>Other Rev/Month: <input class="userInput money" id="otherRevPerMonth" type="text"></p>
-      <p>Vacancy Rate (%): <input class="userInput" id="vacancyRate" type="text"></p>
-      <h3>Gross Revenue/Month = <input class="calculation money" id="grossRevPerMonth" type="text"></h3>
-      <h3>Gross Revenue/Year = <input class="calculation money" id="grossRevPerYear" type="text"></h3>
+      <div class="field-wrap">
+          <label for="numOfUnits"># of Units:</label>
+          <input class="userInput" id="numOfUnits" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="totalRentPerMonth">Total Rent/Month:</label>
+          <input class="userInput money" id="totalRentPerMonth" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="otherRevPerMonth">Other Rev/Month:</label>
+          <input class="userInput money" id="otherRevPerMonth" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="vacancyRate">Vacancy Rate (%):</label>
+          <input class="userInput" id="vacancyRate" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="grossRevPerMonth" class="total-label">Gross Revenue/Month =</label>
+          <input class="calculation money" id="grossRevPerMonth" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="grossRevPerYear" class="total-label">Gross Revenue/Year =</label>
+          <input class="calculation money" id="grossRevPerYear" type="text">
+      </div>
     </div>
 
     <div class="card hide" id="revenues">
       <h2>Revenues</h2>
-      <p>Rental Income: <input class="calculation money" id="rentalIncome" type="text"></p>
-      <p>Vacancy Cost: <input class="calculation money" id="vacCost" type="text"></p>
-      <p>Net Rental Income: <input class="calculation money" id="netRentalIncome" type="text"></p>
-      <p>Other Income: <input class="calculation money" id="otherIncome" type="text"></p>
-      <h3>Gross Income = <input class="calculation money" id="grossIncomeInput" type="text"></h3>
+      <div class="field-wrap">
+          <label for="rentalIncome">Rental Income:</label>
+          <input class="calculation money" id="rentalIncome" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="vacCost">Vacancy Cost:</label>
+          <input class="calculation money" id="vacCost" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="netRentalIncome">Net Rental Income:</label>
+          <input class="calculation money" id="netRentalIncome" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="otherIncome">Other Income:</label>
+          <input class="calculation money" id="otherIncome" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="rentalIncome">Rental Income:</label>
+          <input class="calculation money" id="rentalIncome" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="grossIncomeInput" class="total-label">Gross Income =</label>
+          <input class="calculation money" id="grossIncomeInput" type="text">
+      </div>
     </div>
 
     <div class="card hide" id="expenses">
       <h2>Expenses</h2>
-      <p>Property Taxes (Annual): <input class="userInput money" id="propertyTaxes" type="text"></p>
-      <p>Insurance (Annual): <input class="userInput money" id="insurance" type="text"></p>
-      <p>Property Mgmt (% Rent): <input class="userInput" id="propertyMgmt" type="text"></p>
-      <p>Maintenance/Repairs (Annual): <input class="userInput money" id="maintenanceRepairs" type="text"></p>
-      <p>Advertising (Annual): <input class="userInput money" id="advertising" type="text"></p>
-      <p>Utilities (Annual): <input class="userInput money" id="utilities" type="text"></p>
-      <p>Other 1 (Annual): <input class="userInput money" id="otherExpenses1" type="text"></p>
-      <p>Other 2 (Monthly): <input class="userInput money" id="otherExpenses2" type="text"></p>
-      <p>Other 3 (Monthly): <input class="userInput money" id="otherExpenses3" type="text"></p>
-      <h3>Total Expenses = <input class="calculation money" id="totalExpenses" type="text"></h3>
-      <h3 id="NOI">Net Operating Income (NOI) = <input class="calculation money" id="netOI" type="text"></p></h3>
+      <div class="field-wrap">
+        <label for="propertyTaxes">Property Taxes (Annual):</label>
+        <input class="userInput money" id="propertyTaxes" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="insurance">Insurance (Annual):</label>
+        <input class="userInput money" id="insurance" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="propertyMgmt">Property Mgmt (% Rent):</label>
+        <input class="userInput" id="propertyMgmt" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="maintenanceRepairs">Maintenance/Repairs (Annual):</label>
+        <input class="userInput money" id="maintenanceRepairs" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="advertising">Advertising (Annual):</label>
+        <input class="userInput money" id="advertising" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="utilities">Utilities (Annual):</label>
+        <input class="userInput money" id="utilities" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="otherExpenses1">Other 1 (Annual):</label>
+        <input class="userInput money" id="otherExpenses1" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="otherExpenses2">Other 2 (Annual):</label>
+        <input class="userInput money" id="otherExpenses2" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="otherExpenses3">Other 3 (Annual):</label>
+        <input class="userInput money" id="otherExpenses3" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="totalExpenses" class="total-label">Total Expenses =</label>
+        <input class="calculation money" id="totalExpenses" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="netOI" class="total-label" id="NOI">Net Operating Income (NOI) =</label>
+        <input class="calculation money" id="netOI" type="text">
+      </div>
     </div>
 
     <div class="card hide" id="cashFlow">
       <h2>Cash Flow</h2>
-      <p>NOI (cash available): <input class="calculation money" id="cashAvailable" type="text"></p>
-      <p>Mortgage: <input class="calculation money" id="mtg" type="text"></p>
-      <h3>Total Cash Flow = <input class="calculation money" id="totalCashFlow" type="text"></h3>
-      <h3>Cash ROI = <input class="calculation fixed" id="cashROI" type="text"></h3>
-      <p>Equity Accrued: <input class="userInput money" id="equity" type="text"></p>
-      <p>Appreciation: <input class="userInput money" id="appreciation" type="text"></p>
-      <h3>Total Return = <input class="calculation fixed" id="totalReturn" type="text"></h3>
-      <h3>Total ROI = <input class="calculation fixed" id="totalROI" type="text"></h3>
+      <div class="field-wrap">
+          <label for="cashAvailable">NOI (cash available):</label>
+          <input class="calculation money" id="cashAvailable" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="mtg">Mortgage:</label>
+          <input class="calculation money" id="mtg" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="totalCashFlow" class="total-label">Total Cash Flow =</label>
+        <input class="calculation money" id="totalCashFlow" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="cashROI" class="total-label">Cash ROI =</label>
+        <input class="calculation fixed" id="cashROI" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="mtg">Equity Accrued:</label>
+          <input class="userInput money" id="equity" type="text">
+      </div>
+      <div class="field-wrap">
+          <label for="appreciation">Appreciation:</label>
+          <input class="userInput money" id="appreciation" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="totalReturn" class="total-label">Total Return =</label>
+        <input class="calculation fixed" id="totalReturn" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="totalROI" class="total-label">Total ROI =</label>
+        <input class="calculation fixed" id="totalROI" type="text">
+      </div>
     </div>
 
     <div class="card hide" id="keyValues">
       <h2>Key Values</h2>
-      <p>Cost/Unit: <input class="calculation money" id="costPerUnit" type="text"></p>
-      <p>Capitalization Rate:<input class="calculation fixed" id="capRate" type="text"></p>
-      <p>GRM: <input class="calculation fixed" id="GRM" type="text"></p>
-      <p>Cash ROI: <input class="calculation fixed" id="cashROI2" type="text"></p>
-      <p>Total ROI: <input class="calculation fixed" id="totalROI2" type="text"></p>
-      <p>DSCR: <input class="calculation fixed" id="DSCR" type="text"></p>
-      <p>Annual Cash Flow: <input class="calculation money" id="annualCashFlow" type="text"></p>
+      <div class="field-wrap">
+        <label for="costPerUnit">Cost/Unit:</label>
+        <input class="calculation money" id="costPerUnit" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="capRate">Capitalization Rate:</label>
+        <input class="calculation fixed" id="capRate" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="GRM">GRM:</label>
+        <input class="calculation fixed" id="GRM" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="cashROI2">Cash ROI:</label>
+        <input class="calculation fixed" id="cashROI2" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="totalROI2">Total ROI:</label>
+        <input class="calculation fixed" id="totalROI2" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="capRate">Capitalization Rate:</label>
+        <input class="calculation fixed" id="capRate" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="DSCR">DSCR:</label>
+        <input class="calculation fixed" id="DSCR" type="text">
+      </div>
+      <div class="field-wrap">
+        <label for="annualCashFlow">Annual Cash Flow:</label>
+        <input class="calculation money" id="annualCashFlow" type="text">
+      </div>
     </div>
 
     <div class="buttons">
