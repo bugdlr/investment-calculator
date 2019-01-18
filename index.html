@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -7,7 +7,7 @@
   <title>Real Estate Investment Deal Analysis Calculator</title>
   <link rel="stylesheet" href="css/style.min.css">
   <link href="https://fonts.googleapis.com/css?family=Thasadith:400,700" rel="stylesheet">
-  <script type="text/javascript" src="accounting.min.js"></script>
+  <script src="accounting.min.js"></script>
 </head>
 
 <body>
@@ -112,10 +112,6 @@
       <div class="field-wrap">
           <label for="otherIncome">Other Income:</label>
           <input class="calculation money" id="otherIncome" type="text">
-      </div>
-      <div class="field-wrap">
-          <label for="rentalIncome">Rental Income:</label>
-          <input class="calculation money" id="rentalIncome" type="text">
       </div>
       <div class="field-wrap">
           <label for="grossIncomeInput" class="total-label">Gross Income =</label>
@@ -230,10 +226,6 @@
         <input class="calculation fixed" id="totalROI2" type="text">
       </div>
       <div class="field-wrap">
-        <label for="capRate">Capitalization Rate:</label>
-        <input class="calculation fixed" id="capRate" type="text">
-      </div>
-      <div class="field-wrap">
         <label for="DSCR">DSCR:</label>
         <input class="calculation fixed" id="DSCR" type="text">
       </div>
@@ -245,7 +237,7 @@
 
     <div class="buttons">
       <button type="button" name="button" id="previous" class ="hide">Previous Section</button>
-      <button type="button" name="button" id="next">Next Section</button>
+      <button type="button" name="button" id="next"> <img src="assets/right-arrow.png" id="right-arrow"></button>
       <button type="button" name="button" id="summary" class="hide">Show Summary</button>
       <button type="button" name="button" id="reset">Reset</button>
     </div>
