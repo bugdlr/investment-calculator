@@ -261,7 +261,7 @@ function whichCardIsShowing() {
     allCardsShowing = true;
   } else {
     allCardsShowing = false;
-  } 
+  }
 }
 
 
@@ -324,10 +324,10 @@ resetButton.addEventListener('click', function() {
 
 nextButton.addEventListener('click', function() {
   goToNextCard();
-  prevButton.classList.remove("hide");
+  prevButton.disabled = false;
   whichCardIsShowing();
   if (cardShowing.indexOf(true) == 6) {
-    nextButton.classList.add("hide");
+    nextButton.disabled = true;
     prevButton.classList.remove("hide");
     summaryButton.classList.remove("hide");
   }
@@ -340,12 +340,9 @@ nextButton.addEventListener('click', function() {
 
 prevButton.addEventListener("click", function() {
   whichCardIsShowing();
-  if (cardShowing.indexOf(true) == 1) {
-    prevButton.classList.add("hide");
-    goToPreviousCard();
-  } else if (cardShowing.indexOf(true) == 6) {
+  if (cardShowing.indexOf(true) == 6) {
     summaryButton.classList.add("hide");
-    nextButton.classList.remove("hide");
+    nextButton.disabled = false;
     goToPreviousCard();
   } else if (allCardsShowing) {
     isSummary();

@@ -15,23 +15,28 @@
   <h1>Is this property a good investment?</h1>
 
   <div class="container">
+
+    <div class="buttons arrows">
+      <button type="button" name="button" id="previous" disabled><img src="assets/right-arrow.png" id="left-arrow"</button>
+    </div>
+
     <div class="card" id="costAssumptions">
       <h2>Cost Assumptions</h2>
       <div class="field-wrap">
         <label for="price">Purchase Price:</label>
-        <input class="userInput money" id="price" type="text">
+        <input class="userInput money" id="price" type="text" autofocus inputmode="numeric">
       </div>
       <div class="field-wrap">
         <label for="improvements">Improvements:</label>
-        <input class="userInput money" id="improvements" type="text">
+        <input class="userInput money" id="improvements" type="text"inputmode="numeric">
       </div>
       <div class="field-wrap">
         <label for="closingCosts">Closing Costs:</label>
-        <input class="userInput money" id="closingCosts" type="text">
+        <input class="userInput money" id="closingCosts" type="text"inputmode="numeric">
       </div>
       <div class="field-wrap">
         <label for="totalCost" class="total-label">Total Cost =</label>
-        <input class="calculation money" id="totalCost" type="text">
+        <input class="calculation money" id="totalCost" type="text"inputmode="numeric">
       </div>
     </div>
 
@@ -39,7 +44,7 @@
       <h2>Financing Assumptions</h2>
       <div class="field-wrap">
           <label for="downpayment">Downpayment (%):</label>
-          <input class="userInput" id="downpayment" type="text">
+          <input class="userInput" id="downpayment" type="text" autofocus>
       </div>
       <div class="field-wrap">
           <label for="FinAmt">Finance Amount:</label>
@@ -71,7 +76,7 @@
       <h2>Revenue Assumptions</h2>
       <div class="field-wrap">
           <label for="numOfUnits"># of Units:</label>
-          <input class="userInput" id="numOfUnits" type="text">
+          <input class="userInput" id="numOfUnits" type="text" autofocus>
       </div>
       <div class="field-wrap">
           <label for="totalRentPerMonth">Total Rent/Month:</label>
@@ -123,7 +128,7 @@
       <h2>Expenses</h2>
       <div class="field-wrap">
         <label for="propertyTaxes">Property Taxes (Annual):</label>
-        <input class="userInput money" id="propertyTaxes" type="text">
+        <input class="userInput money" id="propertyTaxes" type="text" autofocus>
       </div>
       <div class="field-wrap">
         <label for="insurance">Insurance (Annual):</label>
@@ -235,12 +240,15 @@
       </div>
     </div>
 
-    <div class="buttons">
-      <button type="button" name="button" id="previous" class ="hide">Previous Section</button>
+
+    <div class="buttons arrows">
       <button type="button" name="button" id="next"> <img src="assets/right-arrow.png" id="right-arrow"></button>
+    </div>
+    <div class="buttons btm-btn" >
       <button type="button" name="button" id="summary" class="hide">Show Summary</button>
       <button type="button" name="button" id="reset">Reset</button>
     </div>
+
   </div>
 
   <script src="app.js"></script>
