@@ -277,10 +277,11 @@ function isSummary() {
       card.style.minWidth = "70%";
     })
     fields.forEach((field) => {
-      field.style.width = "70%";
+      field.style.width = "50%";
       field.style.justifyContent = "space-between";
     })
     prevButton.style.order = "1";
+    resetButton.classList.add("hide");
 }
 
 
@@ -335,6 +336,7 @@ resetButton.addEventListener('click', function() {
 nextButton.addEventListener('click', function() {
   goToNextCard();
   prevButton.disabled = false;
+  resetButton.classList.add("hide");
   whichCardIsShowing();
   if (cardShowing.indexOf(true) == 6) {
     nextButton.disabled = true;
@@ -372,9 +374,10 @@ summaryButton.addEventListener('click', function() {
       card.style.minWidth = "100%";
     })
     fields.forEach((field) => {
-      field.style.width = "60%";
+      field.style.width = "40%";
     })
     nextButton.disabled = true;
+    resetButton.classList.remove("hide");
 })
 
 

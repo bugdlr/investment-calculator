@@ -91,9 +91,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-.calculation {
-  border: none;
-}
+// .calculation {
+//   // border: none;
+//   // background: inherit;
+// }
 
 
 #keyValues  {
@@ -120,15 +121,15 @@ input[type=number]::-webkit-outer-spin-button {
   order: 0;
 }
 
-#reset {
-  display: block;
-  margin: 10px auto;
-  height: 30px;
-}
-
 #summary {
   display: block;
   margin: 10px auto;
+}
+
+#reset{
+  margin: 5px auto;
+  background: rgba(255, 0, 0, 0.3);
+  color: white;
 }
 
 button {
@@ -160,19 +161,28 @@ button:hover {
 
 @media (max-width: 600px) {
   .container {
-    width: 100%;
-    padding: 10px 0;
+    min-width: 95%;
+    min-height: 88vh;
+    padding: 10px;
     text-align: center;
+  }
+  label {
+    width: 100%;
   }
   .field-wrap {
     flex-direction: column;
+    margin: 3px;
   }
   input {
     min-width: 60%;
-    margin-top: 8px;
+    margin-top: 5px;
   }
   .card {
     align-items: center;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 5px;
   }
 }
 
@@ -184,8 +194,8 @@ button:hover {
     min-width: 100%;
   }
   .field-wrap {
-    // justify-content: space-between;
-    width: 70%;
+    justify-content: space-between;
+    width: 90%;
   }
 }
 
