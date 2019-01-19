@@ -68,6 +68,7 @@ h2 {
 label {
   width: auto;
   color: #777;
+  margin-right: 4px;
 }
 
 .total-label {
@@ -88,6 +89,10 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.calculation {
+  border: none;
 }
 
 
@@ -139,6 +144,7 @@ button {
 }
 
 .btm-btn {
+  display: block;
   width: 100%;
   margin: 0 auto;
   align-items: center;
@@ -152,24 +158,35 @@ button:hover {
   cursor: pointer;
 }
 
-@media (max-width: 438px) {
+@media (max-width: 600px) {
   .container {
     width: 100%;
     padding: 10px 0;
+    text-align: center;
+  }
+  .field-wrap {
+    flex-direction: column;
+  }
+  input {
+    min-width: 60%;
+    margin-top: 8px;
   }
   .card {
-    align-items: start;
-  }
-  h3, p {
-    margin: 10px 3px;
+    align-items: center;
   }
 }
 
 @media (max-width: 767px) {
-  // move buttons from sides to bottom, order isnt working
-  // #previous {
-  //   order: 2;
-  // }
+  .buttons {
+    order: 2;
+  }
+  .card {
+    min-width: 100%;
+  }
+  .field-wrap {
+    // justify-content: space-between;
+    width: 70%;
+  }
 }
 
 @media (max-width: 1024px) {

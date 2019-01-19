@@ -65,6 +65,7 @@ const resetButton = document.getElementById("reset");
 const nextButton = document.getElementById("next");
 const prevButton = document.getElementById("previous");
 const summaryButton = document.getElementById("summary");
+const fields = Array.from(document.getElementsByClassName("field-wrap"));
 
 
 // ***********FUNCTIONS*********** //
@@ -271,6 +272,15 @@ function isSummary() {
     cards[i].classList.add("hide");
   } prevButton.classList.remove("hide");
     summaryButton.classList.remove("hide");
+    cards.forEach((card) => {
+      card.style.order = "";
+      card.style.minWidth = "70%";
+    })
+    fields.forEach((field) => {
+      field.style.width = "70%";
+      field.style.justifyContent = "space-between";
+    })
+    prevButton.style.order = "1";
 }
 
 
@@ -355,8 +365,16 @@ prevButton.addEventListener("click", function() {
 summaryButton.addEventListener('click', function() {
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("hide");
-    summaryButton.classList.add("hide");
-  }
+  } summaryButton.classList.add("hide");
+    prevButton.disabled = false;
+    cards.forEach((card) => {
+      card.style.order = "-1";
+      card.style.minWidth = "100%";
+    })
+    fields.forEach((field) => {
+      field.style.width = "60%";
+    })
+    nextButton.disabled = true;
 })
 
 
