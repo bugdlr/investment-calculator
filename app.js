@@ -117,6 +117,25 @@ function setValues() {
   annualCashFlow = Number(document.getElementById("annualCashFlow").value);
 }
 
+
+
+/*********************************** James' note:
+
+1. create empty object
+  let vals = {};
+
+2. create a <node list?> or array-like thingy
+  let things = ['gg', 'rr', 'ee', 'qq'];
+
+3. set key of object as the id of input, set value of the object as the input value
+  things.forEach(el => {
+  	vals[el] = el;
+  });
+
+end note *********************************/
+
+
+
 // ***********CALCULATION FUNCTIONS*********** //
 
 function sumTotalCost() {
@@ -253,7 +272,7 @@ function goToNextCard() {
 
 function whichCardIsShowing() {
   for (let i = 0; i < cards.length; i++) {
-    if(cards[i].classList.contains("hide")) {
+    if (cards[i].classList.contains("hide")) {
       cardShowing[i] = false;
     } else {
     cardShowing[i] = true;
@@ -297,41 +316,20 @@ container.addEventListener('keyup', function(event) {
     calcCashFlow();
     hideNaNs(allInputs);
     setInputValues();
-  }
-})
-
-container.addEventListener('keyup', function(event) {
-  if (event.key == "Enter") {
+  } else {
     inputsIntoNumbers(allInputs);
     numbersIntoMoney(moneyInputs);
     toFixed(fixedInputs);
     hideNaNs(allInputs);
   }
-})
-
-container.addEventListener('keyup', function(event) {
-  if (event.key !== "Enter") {
-    whichCardIsShowing();
-    if (allCardsShowing) {
-      setValues();
-      sumTotalCost();
-      cashOutlay();
-      grossRev();
-      calcGrossIncome();
-      calcTotalExpenses();
-      calcCashFlow();
-      hideNaNs(allInputs);
-      setInputValues();
-    }
-  }
-})
+});
 
 resetButton.addEventListener('click', function() {
   localStorage.clear();
   allInputs.forEach(function(input) {
     input.value = "";
   })
-})
+});
 
 nextButton.addEventListener('click', function() {
   goToNextCard();
@@ -347,7 +345,7 @@ nextButton.addEventListener('click', function() {
     numbersIntoMoney(moneyInputs);
     toFixed(fixedInputs);
     hideNaNs(allInputs);
-})
+});
 
 
 prevButton.addEventListener("click", function() {
@@ -361,24 +359,29 @@ prevButton.addEventListener("click", function() {
   } else {
     goToPreviousCard();
   }
-})
+});
 
 
 summaryButton.addEventListener('click', function() {
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("hide");
-  } summaryButton.classList.add("hide");
-    prevButton.disabled = false;
-    cards.forEach((card) => {
+  }
+
+  document.getElementById('summary').classList.add("hide");
+  prevButton.disabled = false;
+
+  cards.forEach((card) => {
       card.style.order = "-1";
       card.style.minWidth = "100%";
-    })
-    fields.forEach((field) => {
+  });
+
+  fields.forEach((field) => {
       field.style.width = "40%";
-    })
-    nextButton.disabled = true;
-    resetButton.classList.remove("hide");
-})
+  });
+
+  nextButton.disabled = true;
+  resetButton.classList.remove("hide");
+});
 
 
 
