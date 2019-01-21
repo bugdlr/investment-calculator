@@ -15,13 +15,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   background: rgba(255, 255, 255, 0.75);
   color: white;
   width: 70%;
   margin: 50px auto;
   box-shadow: 0px 3px 10px 1px rgba(0,0,0,0.2);
   padding: 20px;
+  position: relative;
 }
 
 .card {
@@ -29,9 +30,9 @@ body {
   flex-direction: column;
   align-items: center;
   color: #666;
-  margin: 0 40px 20px 40px;
+  margin: 0 20px 90px 20px;
   min-width: 100px;
-  max-width: 420px;
+  width: 60%;
   min-height: 0;
 }
 
@@ -91,15 +92,21 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-// .calculation {
-//   // border: none;
-//   // background: inherit;
-// }
-
-
 #keyValues  {
   background: rgba(213,232,207,0.4);
   padding: 0 20px 20px 20px;
+}
+
+#previous {
+  position: absolute;
+  top: 200px;
+  left: 70px;
+}
+
+#next {
+  position: absolute;
+  top: 200px;
+  right: 70px;
 }
 
 #right-arrow {
@@ -122,15 +129,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #summary {
-  display: block;
-  margin: 10px auto;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
-#reset{
-  margin: 5px auto;
-  background: rgba(255, 0, 0, 0.3);
-  color: white;
-}
+
+// ********BUTTONS*********//
 
 button {
   font-size: 17px;
@@ -145,19 +150,31 @@ button {
 }
 
 .btm-btn {
-  display: block;
   width: 100%;
-  margin: 0 auto;
-  align-items: center;
 }
 
 button:focus {
   outline: none;
 }
 
-button:hover {
+button:hover, #reset:hover  {
   cursor: pointer;
 }
+
+button[disabled] {
+  background: inherit;
+}
+
+#reset {
+  color: blue;
+  text-decoration: underline;
+  position: absolute;
+  right: 10px;
+  bottom: -15px;
+}
+
+
+// *********MEDIA QUERIES************//
 
 @media (max-width: 600px) {
   .container {
@@ -166,19 +183,23 @@ button:hover {
     padding: 10px;
     text-align: center;
   }
+
   label {
     width: 100%;
   }
   .field-wrap {
     flex-direction: column;
-    margin: 3px;
+    margin: 8px;
+    width: 100%;
   }
   input {
-    min-width: 60%;
+    max-width: 100%;
+    min-width: 90%;
     margin-top: 5px;
   }
   .card {
     align-items: center;
+    width: 100%;
   }
   h1 {
     font-size: 28px;
@@ -187,16 +208,47 @@ button:hover {
 }
 
 @media (max-width: 767px) {
-  .buttons {
-    order: 2;
+  .container {
+    position: relative;
+    min-height: 90vh;
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
   }
   .card {
     min-width: 100%;
   }
+
   .field-wrap {
     justify-content: space-between;
-    width: 90%;
+    width: 60%;
   }
+
+  #keyValues {
+    margin-bottom: 100px;
+  }
+
+  #previous {
+    position: absolute;
+    top: auto;
+    bottom: 25px;
+    left: 25%;
+    height: 60px;
+  }
+
+  #next {
+    position: absolute;
+    top: auto;
+    bottom: 25px;
+    right: 25%;
+    height: 60px;
+  }
+
+  #summary {
+    margin-bottom: 100px;
+    justify-content: center;
+  }
+
 }
 
 @media (max-width: 1024px) {
@@ -204,5 +256,20 @@ button:hover {
     width: 90%;
     padding: 10px;
     margin: 0 auto;
+  }
+  .field-wrap {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    width: 60%;
+  }
+  .card {
+    width: 60%;
+  }
+  .field-wrap {
+    width: 80%;
   }
 }

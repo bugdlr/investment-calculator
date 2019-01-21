@@ -95,7 +95,7 @@ function calcCashFlow() {
 
 function hideNaNs(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].value.includes("NaN") || inputs[i].value == "$0.00" || inputs[i].value == "0" || inputs[i].value == "Infinity") {
+    if (inputs[i].value.includes("NaN") || inputs[i].value == "$0.00" || inputs[i].value == "0" || inputs[i].value.includes("Infinity")) {
       inputs[i].value = "";
     }
   }
@@ -174,24 +174,25 @@ function whichCardIsShowing() {
 
 function isSummary() {
     // hide all the cards except key values
-  for (let i = 0; i < cards.length - 1; i++) {
+  for (let i = 0; i < cards.length -1; i++) {
     cards[i].classList.add("hide");
   } prevButton.classList.remove("hide");
     summaryButton.classList.remove("hide");
-    cards.forEach((card) => {
-      card.style.order = "";
-      card.style.minWidth = "70%";
-    })
-    fields.forEach((field) => {
-      field.style.width = "50%";
-      field.style.justifyContent = "space-between";
-    })
+    // cards.forEach((card) => {
+    //   card.style.order = "";
+    //   card.style.minWidth = "70%";
+    // })
+    // fields.forEach((field) => {
+    //   field.style.width = "70%";
+    //   field.style.justifyContent = "space-between";
+    // })
     prevButton.style.order = "1";
     resetButton.classList.add("hide");
 }
 
 
 // ***********EVENT LISTENERS*********** //
+
 container.addEventListener('keyup', function(event) {
   if (event.key !== "Enter") {
     setValues();
@@ -241,6 +242,12 @@ prevButton.addEventListener("click", function() {
     summaryButton.classList.add("hide");
     nextButton.disabled = false;
     goToPreviousCard();
+  } else if (cardShowing.indexOf(true) == 5) {
+    nextButton.disabled = false;
+    goToPreviousCard();
+  } else if (cardShowing.indexOf(true) == 1) {
+    prevButton.disabled = true;
+    goToPreviousCard();
   } else if (allCardsShowing) {
     isSummary();
   } else {
@@ -263,7 +270,7 @@ summaryButton.addEventListener('click', function() {
   });
 
   fields.forEach((field) => {
-      field.style.width = "40%";
+      field.style.width = "60%";
   });
 
   nextButton.disabled = true;
