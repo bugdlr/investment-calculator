@@ -3,14 +3,12 @@
 const container = document.querySelector(".container");
 const allInputs = Array.from(document.getElementsByTagName('input'));
 const moneyInputs = Array.from(document.querySelectorAll('.money'));
-const calculationInputs = Array.from(document.getElementsByClassName("calculation"));
 const fixedInputs = Array.from(document.getElementsByClassName("fixed"));
 const cards = Array.from(document.getElementsByClassName("card"));
 const resetButton = document.getElementById("reset");
 const nextButton = document.getElementById("next");
 const prevButton = document.getElementById("previous");
 const summaryButton = document.getElementById("summary");
-const fields = Array.from(document.getElementsByClassName("field-wrap"));
 
 let cardShowing = [true, false, false, false, false, false, false];
 let allCardsShowing = false;
@@ -113,7 +111,8 @@ function inputsIntoNumbers(inputs) {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value.includes("$")) {
       inputs[i].value = accounting.unformat(inputs[i].value);
-    } if (inputs[i].value.includes("%")) {
+    }
+    if (inputs[i].value.includes("%")) {
       inputs[i].value = Number(inputs[i].value.slice(0, -1));
     }
   }
@@ -123,10 +122,12 @@ function numbersIntoMoney(inputs) {
   for (let i = 0; i < inputs.length; i++) {
     if (!(inputs[i].value.includes("$") || inputs[i].value == "" || inputs[i].value == "0")) {
       inputs[i].value = accounting.formatMoney(Number(inputs[i].value));
-      // inputs[i].value = Number(inputs[i].value).toLocaleString("en-US", options);
     }
   }
 }
+
+
+// ***********NAVIGATION FUNCTIONS*********** //
 
 function showSummary() {
   for (let i = 0; i < cards.length; i++) {
@@ -156,15 +157,15 @@ function goToNextCard() {
   }
 }
 
-
 function whichCardIsShowing() {
   for (let i = 0; i < cards.length; i++) {
     if (cards[i].classList.contains("hide")) {
       cardShowing[i] = false;
     } else {
-    cardShowing[i] = true;
+      cardShowing[i] = true;
     }
-  } if (cardShowing.indexOf(false) == "-1") {
+  }
+  if (cardShowing.indexOf(false) == "-1") {
     allCardsShowing = true;
   } else {
     allCardsShowing = false;
@@ -173,21 +174,14 @@ function whichCardIsShowing() {
 
 
 function isSummary() {
-    // hide all the cards except key values
-  for (let i = 0; i < cards.length -1; i++) {
+  // hide all the cards except key values
+  for (let i = 0; i < cards.length - 1; i++) {
     cards[i].classList.add("hide");
-  } prevButton.classList.remove("hide");
-    summaryButton.classList.remove("hide");
-    // cards.forEach((card) => {
-    //   card.style.order = "";
-    //   card.style.minWidth = "70%";
-    // })
-    // fields.forEach((field) => {
-    //   field.style.width = "70%";
-    //   field.style.justifyContent = "space-between";
-    // })
-    prevButton.style.order = "1";
-    resetButton.classList.add("hide");
+  }
+  prevButton.classList.remove("hide");
+  summaryButton.classList.remove("hide");
+  prevButton.style.order = "1";
+  resetButton.classList.add("hide");
 }
 
 
@@ -229,12 +223,11 @@ nextButton.addEventListener('click', function() {
     prevButton.classList.remove("hide");
     summaryButton.classList.remove("hide");
   }
-    inputsIntoNumbers(allInputs);
-    numbersIntoMoney(moneyInputs);
-    toFixed(fixedInputs);
-    hideNaNs(allInputs);
+  inputsIntoNumbers(allInputs);
+  numbersIntoMoney(moneyInputs);
+  toFixed(fixedInputs);
+  hideNaNs(allInputs);
 });
-
 
 prevButton.addEventListener("click", function() {
   whichCardIsShowing();
@@ -255,24 +248,12 @@ prevButton.addEventListener("click", function() {
   }
 });
 
-
 summaryButton.addEventListener('click', function() {
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("hide");
   }
-
   document.getElementById('summary').classList.add("hide");
   prevButton.disabled = false;
-
-  cards.forEach((card) => {
-      card.style.order = "-1";
-      card.style.minWidth = "100%";
-  });
-
-  fields.forEach((field) => {
-      field.style.width = "60%";
-  });
-
   nextButton.disabled = true;
   resetButton.classList.remove("hide");
 });
