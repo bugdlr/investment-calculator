@@ -184,10 +184,19 @@ function isSummary() {
   resetButton.classList.add("hide");
 }
 
+// function autofocus() {
+//   whichCardIsShowing();
+//   allInputs.forEach(input => {
+//     input.removeAttribute("autofocus");
+//   })
+//   let i = cardShowing.indexOf(true);
+//   cards[i].querySelector('input').setAttribute("autofocus",  "");
+// }
+
 
 // ***********EVENT LISTENERS*********** //
 
-container.addEventListener('keyup', function(event) {
+container.addEventListener('keyup', (event) => {
   if (event.key !== "Enter") {
     setValues();
     sumTotalCost();
@@ -206,14 +215,14 @@ container.addEventListener('keyup', function(event) {
   }
 });
 
-resetButton.addEventListener('click', function() {
+resetButton.addEventListener('click', () => {
   localStorage.clear();
   allInputs.forEach(function(input) {
     input.value = "";
   })
 });
 
-nextButton.addEventListener('click', function() {
+nextButton.addEventListener('click', () => {
   goToNextCard();
   prevButton.disabled = false;
   resetButton.classList.add("hide");
@@ -229,7 +238,7 @@ nextButton.addEventListener('click', function() {
   hideNaNs(allInputs);
 });
 
-prevButton.addEventListener("click", function() {
+prevButton.addEventListener("click", () => {
   whichCardIsShowing();
   if (cardShowing.indexOf(true) == 6) {
     summaryButton.classList.add("hide");
@@ -248,7 +257,7 @@ prevButton.addEventListener("click", function() {
   }
 });
 
-summaryButton.addEventListener('click', function() {
+summaryButton.addEventListener('click', () => {
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("hide");
   }
