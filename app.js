@@ -93,7 +93,7 @@ function calcCashFlow() {
 
 function hideNaNs(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].value.includes("NaN") || inputs[i].value == "$0.00" || inputs[i].value == "0" || inputs[i].value.includes("Infinity")) {
+    if (inputs[i].value.includes("NaN") || inputs[i].value === "$0.00" || inputs[i].value === "0" || inputs[i].value.includes("Infinity")) {
       inputs[i].value = "";
     }
   }
@@ -120,7 +120,7 @@ function inputsIntoNumbers(inputs) {
 
 function numbersIntoMoney(inputs) {
   for (let i = 0; i < inputs.length; i++) {
-    if (!(inputs[i].value.includes("$") || inputs[i].value == "" || inputs[i].value == "0")) {
+    if (!(inputs[i].value.includes("$") || inputs[i].value === "" || inputs[i].value == 0)) {
       inputs[i].value = accounting.formatMoney(Number(inputs[i].value));
     }
   }
@@ -165,7 +165,7 @@ function whichCardIsShowing() {
       cardShowing[i] = true;
     }
   }
-  if (cardShowing.indexOf(false) == "-1") {
+  if (cardShowing.indexOf(false) === -1) {
     allCardsShowing = true;
   } else {
     allCardsShowing = false;
@@ -178,25 +178,13 @@ function isSummary() {
   for (let i = 0; i < cards.length - 1; i++) {
     cards[i].classList.add("hide");
   }
-  prevButton.classList.remove("hide");
   summaryButton.classList.remove("hide");
-  prevButton.style.order = "1";
   resetButton.classList.add("hide");
 }
 
-// function autofocus() {
-//   whichCardIsShowing();
-//   allInputs.forEach(input => {
-//     input.removeAttribute("autofocus");
-//   })
-//   let i = cardShowing.indexOf(true);
-//   cards[i].querySelector('input').setAttribute("autofocus",  "");
-// }
-
-
 // ***********EVENT LISTENERS*********** //
 
-container.addEventListener('keyup', (event) => {
+container.addEventListener('keyup', event => {
   if (event.key !== "Enter") {
     setValues();
     sumTotalCost();
@@ -227,7 +215,7 @@ nextButton.addEventListener('click', () => {
   prevButton.disabled = false;
   resetButton.classList.add("hide");
   whichCardIsShowing();
-  if (cardShowing.indexOf(true) == 6) {
+  if (cardShowing.indexOf(true) === 6) {
     nextButton.disabled = true;
     prevButton.classList.remove("hide");
     summaryButton.classList.remove("hide");
@@ -238,16 +226,16 @@ nextButton.addEventListener('click', () => {
   hideNaNs(allInputs);
 });
 
-prevButton.addEventListener("click", () => {
+prevButton.addEventListener("click", function() {
   whichCardIsShowing();
-  if (cardShowing.indexOf(true) == 6) {
+  if (cardShowing.indexOf(true) === 6) {
     summaryButton.classList.add("hide");
     nextButton.disabled = false;
     goToPreviousCard();
-  } else if (cardShowing.indexOf(true) == 5) {
+  } else if (cardShowing.indexOf(true) === 5) {
     nextButton.disabled = false;
     goToPreviousCard();
-  } else if (cardShowing.indexOf(true) == 1) {
+  } else if (cardShowing.indexOf(true) === 1) {
     prevButton.disabled = true;
     goToPreviousCard();
   } else if (allCardsShowing) {
@@ -257,7 +245,7 @@ prevButton.addEventListener("click", () => {
   }
 });
 
-summaryButton.addEventListener('click', () => {
+summaryButton.addEventListener('click', function() {
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("hide");
   }
