@@ -6,8 +6,8 @@ const moneyInputs = Array.from(document.querySelectorAll('.money'));
 const fixedInputs = Array.from(document.getElementsByClassName("fixed"));
 const cards = Array.from(document.getElementsByClassName("card"));
 const resetButton = document.getElementById("reset");
-const nextButton = document.getElementById("next");
-const prevButton = document.getElementById("previous");
+const nextButton = document.querySelector(".right-button");
+const prevButton = document.querySelector(".left-button");
 
 let cardShowing = [true, false, false, false, false, false, false];
 let allCardsShowing = false;
@@ -172,6 +172,10 @@ function showSummary() {
   prevButton.disabled = false;
   nextButton.disabled = true;
   resetButton.classList.remove("hide");
+  container.classList.add("summary");
+  cards.forEach((card) => {
+    card.classList.add("cardOnSummary");
+  })
 }
 
 function isSummary() {
@@ -180,6 +184,10 @@ function isSummary() {
     cards[i].classList.add("hide");
   }
   resetButton.classList.add("hide");
+  container.classList.remove("summary");
+  cards.forEach((card) => {
+    card.classList.remove("cardOnSummary");
+  })
 }
 
 // ***********EVENT LISTENERS*********** //

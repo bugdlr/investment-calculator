@@ -35,7 +35,7 @@ body {
   align-items: center;
   color: @gray;
   margin: 0 20px 20px;
-  min-width: 100px;
+  min-width: 400px;
   width: 60%;
 }
 
@@ -51,6 +51,8 @@ h2 {
   font-size: 28px;
   color: @lightgray;
 }
+
+
 // *********END BASE STYLES********//
 
 
@@ -62,7 +64,7 @@ h2 {
   align-items: center;
   font-size: 20px;
   margin: 10px;
-  width: 80%;
+  width: 100%;
 }
 
 label {
@@ -132,16 +134,16 @@ button {
   text-align: center;
 }
 
-#previous {
+.left-button {
   position: absolute;
   top: 200px;
-  left: 70px;
+  left: 15px;
 }
 
-#next {
+.right-button {
   position: absolute;
   top: 200px;
-  right: 70px;
+  right: 15px;
 }
 
 #right-arrow {
@@ -232,13 +234,9 @@ button {
     font-size: 34px;
   }
 
-  .card {
-    min-width: 100%;
-  }
-
   .field-wrap {
     justify-content: space-between;
-    width: 60%;
+    width: 100%;
   }
 
   #keyValues {
@@ -271,7 +269,20 @@ button {
   }
 
   .field-wrap {
-    width: 70%;
+    width: 80%;
     min-width: 350px;
+    align-items: center;
+    justify-content: space-between;
   }
+}
+
+
+// SUMMARY PAGE STYLES
+
+.summary {
+  width: 98%;
+}
+
+.cardOnSummary {
+  width: 420px;
 }
