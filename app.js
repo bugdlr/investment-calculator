@@ -8,7 +8,6 @@ const cards = Array.from(document.getElementsByClassName("card"));
 const resetButton = document.getElementById("reset");
 const nextButton = document.getElementById("next");
 const prevButton = document.getElementById("previous");
-const summaryButton = document.getElementById("summary");
 
 let cardShowing = [true, false, false, false, false, false, false];
 let allCardsShowing = false;
@@ -129,13 +128,6 @@ function numbersIntoMoney(inputs) {
 
 // ***********NAVIGATION FUNCTIONS*********** //
 
-function showSummary() {
-  for (let i = 0; i < cards.length; i++) {
-    if (nextButton.innerHTML == "Show Summary") {
-      cards[i].classList.remove("hide");
-    }
-  }
-}
 
 function goToPreviousCard() {
   for (let i = cards.length - 1; i >= 1; i--) {
@@ -172,13 +164,21 @@ function whichCardIsShowing() {
   }
 }
 
+function showSummary() {
+  // show all cards
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].classList.remove("hide");
+  }
+  prevButton.disabled = false;
+  nextButton.disabled = true;
+  resetButton.classList.remove("hide");
+}
 
 function isSummary() {
   // hide all the cards except key values
   for (let i = 0; i < cards.length - 1; i++) {
     cards[i].classList.add("hide");
   }
-  summaryButton.classList.remove("hide");
   resetButton.classList.add("hide");
 }
 
@@ -216,9 +216,7 @@ nextButton.addEventListener('click', () => {
   resetButton.classList.add("hide");
   whichCardIsShowing();
   if (cardShowing.indexOf(true) === 6) {
-    nextButton.disabled = true;
-    prevButton.classList.remove("hide");
-    summaryButton.classList.remove("hide");
+    nextButton.addEventListener('click', showSummary);
   }
   inputsIntoNumbers(allInputs);
   numbersIntoMoney(moneyInputs);
@@ -228,14 +226,9 @@ nextButton.addEventListener('click', () => {
 
 prevButton.addEventListener("click", function() {
   whichCardIsShowing();
-  if (cardShowing.indexOf(true) === 6) {
-    summaryButton.classList.add("hide");
-    nextButton.disabled = false;
-    goToPreviousCard();
-  } else if (cardShowing.indexOf(true) === 5) {
-    nextButton.disabled = false;
-    goToPreviousCard();
-  } else if (cardShowing.indexOf(true) === 1) {
+  nextButton.disabled = false;
+  nextButton.removeEventListener('click', showSummary);
+  if (cardShowing.indexOf(true) === 1) {
     prevButton.disabled = true;
     goToPreviousCard();
   } else if (allCardsShowing) {
@@ -243,16 +236,6 @@ prevButton.addEventListener("click", function() {
   } else {
     goToPreviousCard();
   }
-});
-
-summaryButton.addEventListener('click', function() {
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].classList.remove("hide");
-  }
-  document.getElementById('summary').classList.add("hide");
-  prevButton.disabled = false;
-  nextButton.disabled = true;
-  resetButton.classList.remove("hide");
 });
 
 
