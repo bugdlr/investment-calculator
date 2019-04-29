@@ -13,7 +13,7 @@ let cardShowing = [true, false, false, false, false, false, false];
 let allCardsShowing = false;
 let inputValues = {};
 
-function setValues() {
+const setValues = () => {
   inputsIntoNumbers(allInputs);
   for (let i = 0; i < allInputs.length; i++) {
     inputValues[allInputs[i].id] = Number(allInputs[i].value);
@@ -22,12 +22,12 @@ function setValues() {
 
 // ***********CALCULATION FUNCTIONS*********** //
 
-function sumTotalCost() {
+const sumTotalCost = () => {
   result = inputValues.price + inputValues.improvements + inputValues.closingCosts;
   document.getElementById('totalCost').value = result;
 }
 
-function cashOutlay() {
+const cashOutlay = () => {
   setValues();
   inputsIntoNumbers(allInputs);
   document.getElementById('dwnpmtAmt').value = (inputValues.downpayment / 100) * inputValues.price;
@@ -42,7 +42,7 @@ function cashOutlay() {
   document.getElementById('mortgagePayment').value = inputValues.FinAmt * (numerator / denominator);
 }
 
-function grossRev() {
+const grossRev = () => {
   setValues();
   inputsIntoNumbers(allInputs);
   totalRev = inputValues.totalRentPerMonth + inputValues.otherRevPerMonth;
@@ -54,7 +54,7 @@ function grossRev() {
   document.getElementById('GRM').value = inputValues.totalCost / inputValues.grossRevPerYear;
 }
 
-function calcGrossIncome() {
+const calcGrossIncome = () => {
   setValues();
   inputsIntoNumbers(allInputs);
   document.getElementById('vacCost').value = (inputValues.vacancyRate / 100) * (inputValues.totalRentPerMonth * 12);
@@ -62,7 +62,7 @@ function calcGrossIncome() {
   document.getElementById('grossIncomeInput').value = (inputValues.netRentalIncome + inputValues.otherIncome);
 }
 
-function calcTotalExpenses() {
+const calcTotalExpenses = () => {
   setValues();
   inputsIntoNumbers(allInputs);
   propMgmCalc = (inputValues.propertyMgmt / 100) * inputValues.netRentalIncome;
@@ -75,7 +75,7 @@ function calcTotalExpenses() {
   document.getElementById('cashAvailable').value = inputValues.netOI;
 }
 
-function calcCashFlow() {
+const calcCashFlow = () => {
   setValues();
   inputsIntoNumbers(allInputs);
   document.getElementById('cashROI').value = ((inputValues.totalCashFlow / inputValues.cashOutlay) * 100);
@@ -90,7 +90,7 @@ function calcCashFlow() {
 
 // ***********FORMATTING FUNCTIONS*********** //
 
-function hideNaNs(inputs) {
+const hideNaNs =  inputs => {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value.includes("NaN") || inputs[i].value === "$0.00" || inputs[i].value === "0" || inputs[i].value.includes("Infinity")) {
       inputs[i].value = "";
@@ -98,7 +98,7 @@ function hideNaNs(inputs) {
   }
 }
 
-function toFixed(inputs) {
+const toFixed =  inputs => {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value !== "" && !(inputs[i].value.includes("NaN"))) {
       inputs[i].value = Number(inputs[i].value).toFixed(2) + "%";
@@ -106,7 +106,7 @@ function toFixed(inputs) {
   }
 }
 
-function inputsIntoNumbers(inputs) {
+const inputsIntoNumbers =  inputs => {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].value.includes("$")) {
       inputs[i].value = accounting.unformat(inputs[i].value);
@@ -117,7 +117,7 @@ function inputsIntoNumbers(inputs) {
   }
 }
 
-function numbersIntoMoney(inputs) {
+const numbersIntoMoney = inputs => {
   for (let i = 0; i < inputs.length; i++) {
     if (!(inputs[i].value.includes("$") || inputs[i].value === "" || inputs[i].value == 0)) {
       inputs[i].value = accounting.formatMoney(Number(inputs[i].value));
@@ -129,7 +129,7 @@ function numbersIntoMoney(inputs) {
 // ***********NAVIGATION FUNCTIONS*********** //
 
 
-function goToPreviousCard() {
+const goToPreviousCard = () => {
   for (let i = cards.length - 1; i >= 1; i--) {
     if (!(cards[i].classList.contains("hide"))) {
       cards[i].classList.add("hide");
@@ -139,7 +139,7 @@ function goToPreviousCard() {
   }
 }
 
-function goToNextCard() {
+const goToNextCard = () => {
   for (let i = 0; i < cards.length - 1; i++) {
     if (!(cards[i].classList.contains("hide"))) {
       cards[i].classList.add("hide");
@@ -149,7 +149,7 @@ function goToNextCard() {
   }
 }
 
-function whichCardIsShowing() {
+const whichCardIsShowing = () => {
   for (let i = 0; i < cards.length; i++) {
     if (cards[i].classList.contains("hide")) {
       cardShowing[i] = false;
@@ -164,7 +164,7 @@ function whichCardIsShowing() {
   }
 }
 
-function showSummary() {
+const showSummary = () => {
   // show all cards
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("hide");
@@ -178,7 +178,7 @@ function showSummary() {
   })
 }
 
-function isSummary() {
+const isSummary = () => {
   // hide all the cards except key values
   for (let i = 0; i < cards.length - 1; i++) {
     cards[i].classList.add("hide");
@@ -213,9 +213,7 @@ container.addEventListener('keyup', event => {
 
 resetButton.addEventListener('click', () => {
   localStorage.clear();
-  allInputs.forEach(function(input) {
-    input.value = "";
-  })
+  allInputs.forEach(input => input.value = "");
 });
 
 nextButton.addEventListener('click', () => {
@@ -232,7 +230,7 @@ nextButton.addEventListener('click', () => {
   hideNaNs(allInputs);
 });
 
-prevButton.addEventListener("click", function() {
+prevButton.addEventListener("click", () => {
   whichCardIsShowing();
   nextButton.disabled = false;
   nextButton.removeEventListener('click', showSummary);
@@ -253,7 +251,7 @@ prevButton.addEventListener("click", function() {
 let allInputValues = [];
 let data = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
-function setInputValues() {
+const setInputValues = () => {
   allInputValues = [];
   for (let i = 0; i < allInputs.length; i++) {
     allInputValues.push(allInputs[i].value);
@@ -261,7 +259,7 @@ function setInputValues() {
   }
 }
 
-function getLocalStorageData() {
+const getLocalStorageData = () => {
   for (let i = 0; i < data.length; i++) {
     allInputs[i].value = data[i];
   }
@@ -269,7 +267,7 @@ function getLocalStorageData() {
   toFixed(fixedInputs);
 }
 
-(function populateInputs() {
+(populateInputs = () => {
   if (localStorage.getItem("items")) {
     getLocalStorageData();
   }
